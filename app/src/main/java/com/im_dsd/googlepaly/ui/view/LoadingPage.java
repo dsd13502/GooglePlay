@@ -3,6 +3,7 @@ package com.im_dsd.googlepaly.ui.view;
 import android.content.Context;
 import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.FrameLayout;
 
 import com.im_dsd.googlepaly.R;
@@ -57,7 +58,6 @@ public abstract class LoadingPage extends FrameLayout{
             addView(mErrorView);
         }
 
-
         showRightPager();
         LoadDate();
 
@@ -93,6 +93,11 @@ public abstract class LoadingPage extends FrameLayout{
             if (OnCreateSuccessView() != null)
             {
                 mSuccessView = OnCreateSuccessView();
+                ViewGroup parent = (ViewGroup) mSuccessView.getParent();
+                if (parent != null)
+                {
+                    parent.removeAllViews();
+                }
                 addView(mSuccessView);
 
             }
@@ -142,7 +147,7 @@ public abstract class LoadingPage extends FrameLayout{
             }.start();
 
         }
-        showRightPager();
+
     }
     /**
      * 正在加载

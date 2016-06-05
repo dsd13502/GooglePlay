@@ -72,5 +72,6 @@ public class MainActivity extends BaseActivity {
         public int getCount() {
             return mTabNameList.length;
         }
+
     }
 }

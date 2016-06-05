@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import com.im_dsd.googlepaly.utils.UIUtils;
  */
 public abstract class BaseFragment extends Fragment {
 
+    public static final String TAG = "BaseFragment";
     private final Context context;
 
     public BaseFragment()
@@ -31,6 +33,7 @@ public abstract class BaseFragment extends Fragment {
     }
 
     private LoadingPage initView() {
+        Log.i(TAG, "initView: ");
         LoadingPage loadingPage = new LoadingPage(context){
 
             @Override
