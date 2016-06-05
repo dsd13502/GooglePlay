@@ -19,7 +19,7 @@ public abstract class BaseHolder<T> {
     }
 
     /**
-     * 设置Item的布局，
+     * 设置Item的整体布局，以及布局内的各个控件。
      *
      * @return Item的布局
      */

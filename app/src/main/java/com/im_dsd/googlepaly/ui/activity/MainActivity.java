@@ -5,6 +5,8 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
+import android.view.View;
+import android.widget.Button;
 
 import com.im_dsd.googlepaly.R;
 import com.im_dsd.googlepaly.ui.fragment.FragmentFactory;
@@ -41,7 +43,13 @@ public class MainActivity extends BaseActivity {
         vpFragmentsContainer.setAdapter(new MyAdapter(getSupportFragmentManager()));
         ptIndicator.setViewPager(vpFragmentsContainer);
 
+        Button b = new Button(UIUtils.getContext());
+        b.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
 
+            }
+        });
     }
 
 
@@ -55,7 +63,10 @@ public class MainActivity extends BaseActivity {
 
             //从资源文件中获取PagerTab的中ViewPager对应的各个tab的name
             mTabNameList = UIUtils.getStringArrayResources(R.array.tab_names);
+
         }
+
+
 
         @Override
         public CharSequence getPageTitle(int position) {
