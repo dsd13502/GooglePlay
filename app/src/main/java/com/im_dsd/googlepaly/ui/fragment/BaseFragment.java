@@ -12,6 +12,8 @@ import android.view.ViewGroup;
 import com.im_dsd.googlepaly.ui.view.LoadingPage;
 import com.im_dsd.googlepaly.utils.UIUtils;
 
+import java.util.List;
+
 /**
  * Created by im_dsd on 16-6-3.
  */
@@ -51,6 +53,25 @@ public abstract class BaseFragment extends Fragment {
         return loadingPage;
     }
 
+    /**
+     * 校验数据的合法性,返回相应的状态
+     * @param data
+     * @return
+     */
+    public LoadingPage.ResultState check(Object data) {
+        if (data != null) {
+            if (data instanceof List) {//判断当前对象是否是一个集合
+                List list = (List) data;
+                if (!list.isEmpty()) {//数据不为空,访问成功
+                    return LoadingPage.ResultState.STATE_SUCCESS;
+                } else {//空集合
+                    return LoadingPage.ResultState.STATE_EMPTY;
+                }
+            }
+        }
+
+        return LoadingPage.ResultState.STATE_ERROR;
+    }
     public abstract  View  OnCreateSuccessView();
     public abstract LoadingPage.ResultState OnLoadDate();
 

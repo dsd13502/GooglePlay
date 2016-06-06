@@ -3,13 +3,14 @@ package com.im_dsd.googlepaly.ui.holder;
 import android.view.View;
 import android.widget.TextView;
 
+import com.im_dsd.googlepaly.domain.AppInfoBean;
 import com.im_dsd.googlepaly.utils.UIUtils;
 
 /**
  * Created by im_dsd on 16-6-5.
  */
 
-public class HomeFragmentHolder extends  BaseHolder<String> {
+public class HomeFragmentHolder extends  BaseHolder<AppInfoBean.AppInfo> {
 
     private TextView tv;
 
@@ -20,8 +21,8 @@ public class HomeFragmentHolder extends  BaseHolder<String> {
     }
 
     @Override
-    public void refreshView(String data) {
-        tv.setText(data);
+    public void refreshView(AppInfoBean.AppInfo data) {
+        tv.setText(data.getName());
     }
 
 }

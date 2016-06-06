@@ -5,6 +5,8 @@ import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
+import com.im_dsd.googlepaly.domain.AppInfoBean;
+import com.im_dsd.googlepaly.http.protocol.HomeFragmentProtocol;
 import com.im_dsd.googlepaly.ui.adapter.MyBaseAdapter;
 import com.im_dsd.googlepaly.ui.holder.BaseHolder;
 import com.im_dsd.googlepaly.ui.holder.HomeFragmentHolder;
@@ -21,7 +23,7 @@ public class HomeFragment extends BaseFragment {
 
     public static final String TAG = "HomeFragment";
     private ListView mListViw = null;
-    private ArrayList<String> list = null;
+    private ArrayList<AppInfoBean.AppInfo> mDataList = null;
     private HomeAdapter mHomeAdapter;
 
     @Override
@@ -36,34 +38,39 @@ public class HomeFragment extends BaseFragment {
     @Override
     public LoadingPage.ResultState OnLoadDate() {
 
-        Log.i(TAG,"OnLoadDate");
-        list = new ArrayList<>();
-        for (int i = 0; i < 20; i++)
+        //加载数据
+        final HomeFragmentProtocol protocol = new HomeFragmentProtocol();
+
+        AppInfoBean data = protocol.getData(0);
+        if (data != null)
         {
-            list.add("模拟数据 " + i);
+            mDataList =(ArrayList<AppInfoBean.AppInfo>) data.getList();
         }
-        mHomeAdapter = new HomeAdapter(list);
+        else
+        {
+            Log.i(TAG, "OnLoadDate: data == null");
+        }
+
+
+        mHomeAdapter = new HomeAdapter(mDataList);
 
 
         mHomeAdapter.setOnLoadMoreDataListener(new MyBaseAdapter.OnLoadMoreDataListener() {
             @Override
             public ArrayList OnLoadMoreData() {
 
-                ArrayList<String> loadMoreList = new ArrayList<>();
-                for (int i = 0; i < 10; i++)
-                {
-                    loadMoreList.add("加载更多数据 " + i);
-                }
+                ArrayList<AppInfoBean.AppInfo> loadMoreList =
+                        (ArrayList<AppInfoBean.AppInfo>) protocol.getData(mDataList.size()).getList();
                 SystemClock.sleep(1000);
 
                 return loadMoreList;
             }
         });
-        return LoadingPage.ResultState.STATE_SUCCESS;
+        return check(mDataList);
     }
 
 
-    class HomeAdapter extends MyBaseAdapter<String>
+    class HomeAdapter extends MyBaseAdapter<AppInfoBean.AppInfo>
     {
 
         /**
