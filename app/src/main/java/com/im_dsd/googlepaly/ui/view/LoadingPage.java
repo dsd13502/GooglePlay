@@ -4,6 +4,7 @@ import android.content.Context;
 import android.util.Log;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.im_dsd.googlepaly.R;
@@ -59,7 +60,7 @@ public abstract class LoadingPage extends FrameLayout{
         }
 
         showRightPager();
-        LoadDate();
+       // LoadDate();
 
     }
 
@@ -111,7 +112,7 @@ public abstract class LoadingPage extends FrameLayout{
 
     }
 
-    private  void LoadDate()
+    public  void LoadDate()
     {
         // 状态归零
         if (mCurrentState == STATE_LOAD_EMPTY
@@ -173,7 +174,16 @@ public abstract class LoadingPage extends FrameLayout{
      */
     private  View OnCreateErrorView()
     {
-        return UIUtils.inflate(R.layout.layout_error);
+        //设置 重新加载按钮的监听事件
+        View errorView = UIUtils.inflate(R.layout.layout_error);
+        Button retryButton = (Button) errorView.findViewById(R.id.btn_retry);
+        retryButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                OnLoadDate();
+            }
+        });
+        return errorView;
     }
 
     /**

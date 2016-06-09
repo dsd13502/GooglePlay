@@ -44,7 +44,7 @@ public class HomeFragment extends BaseFragment {
         AppInfoBean data = protocol.getData(0);
         if (data != null)
         {
-            mDataList =(ArrayList<AppInfoBean.AppInfo>) data.getList();
+            mDataList = data.getList();
         }
         else
         {
@@ -60,7 +60,7 @@ public class HomeFragment extends BaseFragment {
             public ArrayList OnLoadMoreData() {
 
                 ArrayList<AppInfoBean.AppInfo> loadMoreList =
-                        (ArrayList<AppInfoBean.AppInfo>) protocol.getData(mDataList.size()).getList();
+                         protocol.getData(mDataList.size()).getList();
                 SystemClock.sleep(1000);
 
                 return loadMoreList;

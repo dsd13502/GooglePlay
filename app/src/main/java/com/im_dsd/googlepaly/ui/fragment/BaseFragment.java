@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,6 +20,7 @@ public abstract class BaseFragment extends Fragment {
 
     public static final String TAG = "BaseFragment";
     private final Context context;
+    private LoadingPage mLoadingPage;
 
     public BaseFragment()
     {
@@ -35,8 +35,8 @@ public abstract class BaseFragment extends Fragment {
     }
 
     private LoadingPage initView() {
-        Log.i(TAG, "initView: ");
-        LoadingPage loadingPage = new LoadingPage(context){
+
+        mLoadingPage = new LoadingPage(context){
 
             @Override
             public View OnCreateSuccessView() {
@@ -50,7 +50,9 @@ public abstract class BaseFragment extends Fragment {
             }
         };
 
-        return loadingPage;
+
+
+        return mLoadingPage;
     }
 
     /**
@@ -71,6 +73,17 @@ public abstract class BaseFragment extends Fragment {
         }
 
         return LoadingPage.ResultState.STATE_ERROR;
+    }
+
+    /**
+     * 载入数据
+     */
+    public void  LoadDate()
+    {
+        if (mLoadingPage != null)
+        {
+            mLoadingPage.LoadDate();
+        }
     }
     public abstract  View  OnCreateSuccessView();
     public abstract LoadingPage.ResultState OnLoadDate();

@@ -1,14 +1,13 @@
 package com.im_dsd.googlepaly.ui.activity;
 
 import android.os.Bundle;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
-import android.view.View;
-import android.widget.Button;
+import android.util.Log;
 
 import com.im_dsd.googlepaly.R;
+import com.im_dsd.googlepaly.ui.fragment.BaseFragment;
 import com.im_dsd.googlepaly.ui.fragment.FragmentFactory;
 import com.im_dsd.googlepaly.ui.view.PagerTab;
 import com.im_dsd.googlepaly.utils.UIUtils;
@@ -17,6 +16,7 @@ import butterknife.Bind;
 import butterknife.ButterKnife;
 
 public class MainActivity extends BaseActivity {
+    private static final String TAG = "MainActivity";
     //绑定PagerTab（ViewPager指示器）
     @Bind(R.id.pt_indicator)
     PagerTab ptIndicator;
@@ -40,13 +40,25 @@ public class MainActivity extends BaseActivity {
 
     private void initView() {
 
-        vpFragmentsContainer.setAdapter(new MyAdapter(getSupportFragmentManager()));
+        final MyAdapter myAdapter = new MyAdapter(getSupportFragmentManager());
+        vpFragmentsContainer.setAdapter(myAdapter);
+
         ptIndicator.setViewPager(vpFragmentsContainer);
 
-        Button b = new Button(UIUtils.getContext());
-        b.setOnClickListener(new View.OnClickListener() {
+        ptIndicator.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
             @Override
-            public void onClick(View v) {
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                Log.i(TAG, "onPageSelected: position" + position );
+                myAdapter.getItem(position).LoadDate();
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
 
             }
         });
@@ -75,7 +87,7 @@ public class MainActivity extends BaseActivity {
         }
 
         @Override
-        public Fragment getItem(int position) {
+        public BaseFragment getItem(int position) {
             return FragmentFactory.CreaterFragment(position);
         }
 

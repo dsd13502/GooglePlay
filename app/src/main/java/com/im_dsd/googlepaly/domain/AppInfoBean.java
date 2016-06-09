@@ -1,6 +1,6 @@
 package com.im_dsd.googlepaly.domain;
 
-import java.util.List;
+import java.util.ArrayList;
 
 /**
  * Created by im_dsd on 16-6-6.
@@ -9,7 +9,7 @@ import java.util.List;
 public class AppInfoBean {
 
 
-    private List<String> picture;
+    private ArrayList<String> picture;
     /**
      * id : 1525490
      * name : 有缘网
@@ -21,21 +21,21 @@ public class AppInfoBean {
      * des : 产品介绍：有缘是时下最受大众单身男女亲睐的婚恋交友软件。有缘网专注于通过轻松、
      */
 
-    private List<AppInfo> list;
+    private ArrayList<AppInfo> list;
 
-    public List<String> getPicture() {
+    public ArrayList<String> getPicture() {
         return picture;
     }
 
-    public void setPicture(List<String> picture) {
+    public void setPicture(ArrayList<String> picture) {
         this.picture = picture;
     }
 
-    public List<AppInfo> getList() {
+    public ArrayList<AppInfo> getList() {
         return list;
     }
 
-    public void setList(List<AppInfo> list) {
+    public void setList(ArrayList<AppInfo> list) {
         this.list = list;
     }
 
