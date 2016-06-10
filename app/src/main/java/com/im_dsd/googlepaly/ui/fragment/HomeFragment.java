@@ -1,5 +1,7 @@
 package com.im_dsd.googlepaly.ui.fragment;
 
+import android.graphics.Color;
+import android.graphics.drawable.ColorDrawable;
 import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
@@ -32,6 +34,13 @@ public class HomeFragment extends BaseFragment {
         Log.i(TAG,"OnCreateSuccessView");
         mListViw = new ListView(UIUtils.getContext());
         mListViw.setAdapter(mHomeAdapter);
+
+        //设置选择后，背景无颜色变化
+        mListViw.setSelector(new ColorDrawable());
+        //去掉分割线
+        mListViw.setDivider(null);
+        //避免滑动黑边
+        mListViw.setCacheColorHint(Color.TRANSPARENT);
         return mListViw;
     }
 
