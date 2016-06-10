@@ -23,19 +23,21 @@ public class AppFragmentProtocol extends BaseProtocol<ArrayList<AppBean>> {
         //用于保存数据的数组。
         ArrayList<AppBean> list = new ArrayList<AppBean>();
 
-        //将解析json为JsonElement
+        //通过JsonParser对象可以把json格式的字符串解析成一个JsonElement对象
         JsonParser parse = new JsonParser();
-        //
         JsonElement jsonElement = parse.parse(json);
 
+        //把JsonElement对象转换成JsonArray
         JsonArray jsonArray;
         if (jsonElement.isJsonArray()) {
 
             jsonArray = jsonElement.getAsJsonArray();
-
-            Iterator iterator = jsonArray.iterator();
             AppBean appInfo;
+
+            //遍历JsonArray对象
+            Iterator iterator = jsonArray.iterator();
             while (iterator.hasNext()) {
+                //JsonElement转换为JavaBean对象
                 JsonElement next = (JsonElement) iterator.next();
                 appInfo = gson.fromJson(next, AppBean.class);
                 list.add(appInfo);
