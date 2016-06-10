@@ -2,12 +2,11 @@ package com.im_dsd.googlepaly.ui.fragment;
 
 import android.graphics.Color;
 import android.graphics.drawable.ColorDrawable;
-import android.os.SystemClock;
 import android.util.Log;
 import android.view.View;
 import android.widget.ListView;
 
-import com.im_dsd.googlepaly.domain.AppInfoBean;
+import com.im_dsd.googlepaly.domain.HomeBean;
 import com.im_dsd.googlepaly.http.protocol.HomeFragmentProtocol;
 import com.im_dsd.googlepaly.ui.adapter.MyBaseAdapter;
 import com.im_dsd.googlepaly.ui.holder.BaseHolder;
@@ -25,7 +24,7 @@ public class HomeFragment extends BaseFragment {
 
     public static final String TAG = "HomeFragment";
     private ListView mListViw = null;
-    private ArrayList<AppInfoBean.AppInfo> mDataList = null;
+    private ArrayList<HomeBean.AppInfo> mDataList = null;
     private HomeAdapter mHomeAdapter;
 
     @Override
@@ -50,7 +49,7 @@ public class HomeFragment extends BaseFragment {
         //加载数据
         final HomeFragmentProtocol protocol = new HomeFragmentProtocol();
 
-        AppInfoBean data = protocol.getData(0);
+        HomeBean data = protocol.getData(0);
         if (data != null)
         {
             mDataList = data.getList();
@@ -68,9 +67,8 @@ public class HomeFragment extends BaseFragment {
             @Override
             public ArrayList OnLoadMoreData() {
 
-                ArrayList<AppInfoBean.AppInfo> loadMoreList =
+                ArrayList<HomeBean.AppInfo> loadMoreList =
                          protocol.getData(mDataList.size()).getList();
-                SystemClock.sleep(1000);
 
                 return loadMoreList;
             }
@@ -79,7 +77,7 @@ public class HomeFragment extends BaseFragment {
     }
 
 
-    class HomeAdapter extends MyBaseAdapter<AppInfoBean.AppInfo>
+    class HomeAdapter extends MyBaseAdapter<HomeBean.AppInfo>
     {
 
         /**

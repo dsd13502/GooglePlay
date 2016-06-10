@@ -1,18 +1,18 @@
 package com.im_dsd.googlepaly.http.protocol;
 
 import com.google.gson.Gson;
-import com.im_dsd.googlepaly.domain.AppInfoBean;
+import com.im_dsd.googlepaly.domain.HomeBean;
 
 /**
  * Created by im_dsd on 16-6-6.
  */
 
-public class HomeFragmentProtocol extends BaseProtocol<AppInfoBean> {
+public class HomeFragmentProtocol extends BaseProtocol<HomeBean> {
     @Override
-    protected AppInfoBean parseJson(String json) {
+    protected HomeBean parseJson(String json) {
         Gson gson = new Gson();
 
-        AppInfoBean appInfo = gson.fromJson(json, AppInfoBean.class);
+        HomeBean appInfo = gson.fromJson(json, HomeBean.class);
 
         return appInfo;
     }

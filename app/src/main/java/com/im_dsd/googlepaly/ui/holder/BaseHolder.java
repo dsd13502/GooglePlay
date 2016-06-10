@@ -62,5 +62,4 @@ public abstract class BaseHolder<T> {
      */
     public abstract void refreshView(T data);
 
-
 }

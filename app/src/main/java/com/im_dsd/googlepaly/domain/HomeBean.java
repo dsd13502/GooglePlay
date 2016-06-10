@@ -6,7 +6,7 @@ import java.util.ArrayList;
  * Created by im_dsd on 16-6-6.
  */
 
-public class AppInfoBean {
+public class HomeBean {
 
 
     private ArrayList<String> picture;

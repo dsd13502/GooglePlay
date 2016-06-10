@@ -8,7 +8,7 @@ import android.widget.RatingBar;
 import android.widget.TextView;
 
 import com.im_dsd.googlepaly.R;
-import com.im_dsd.googlepaly.domain.HomeBean;
+import com.im_dsd.googlepaly.domain.AppBean;
 import com.im_dsd.googlepaly.http.HttpHelper;
 import com.im_dsd.googlepaly.utils.BitmapHelper;
 import com.im_dsd.googlepaly.utils.UIUtils;
@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
  * Created by im_dsd on 16-6-5.
  */
 
-public class HomeFragmentHolder extends BaseHolder<HomeBean.AppInfo> {
+public class AppFragmentHolder extends BaseHolder<AppBean> {
 
 
     @Bind(R.id.iv_icon)
@@ -53,7 +53,7 @@ public class HomeFragmentHolder extends BaseHolder<HomeBean.AppInfo> {
     }
 
     @Override
-    public void refreshView(HomeBean.AppInfo data) {
+    public void refreshView(AppBean data) {
 
         //存储单位的自动转换。
         String size = Formatter.formatFileSize(UIUtils.getContext(), data.getSize());
