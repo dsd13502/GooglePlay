@@ -1,5 +1,6 @@
 <resources>
     <string name="app_name">谷歌电子市场s</string>
+    <string name="_1000">1000</string>
 
     <string-array name="tab_names">
         <item>首页</item>
