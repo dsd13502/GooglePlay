@@ -14,7 +14,7 @@ import java.util.Iterator;
  * Created by im_dsd on 16-6-6.
  */
 
-public class AppFragmentProtocol extends BaseProtocol<ArrayList<AppBean>> {
+public class AppProtocol extends BaseProtocol<ArrayList<AppBean>> {
     @Override
     protected ArrayList<AppBean> parseJson(String json) {
 

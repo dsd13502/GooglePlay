@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
  * Created by im_dsd on 16-6-5.
  */
 
-public class AppFragmentHolder extends BaseHolder<AppBean> {
+public class AppHolder extends BaseHolder<AppBean> {
 
 
     @Bind(R.id.iv_icon)

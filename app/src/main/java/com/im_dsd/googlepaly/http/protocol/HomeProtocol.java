@@ -7,7 +7,7 @@ import com.im_dsd.googlepaly.domain.HomeBean;
  * Created by im_dsd on 16-6-6.
  */
 
-public class HomeFragmentProtocol extends BaseProtocol<HomeBean> {
+public class HomeProtocol extends BaseProtocol<HomeBean> {
     @Override
     protected HomeBean parseJson(String json) {
         Gson gson = new Gson();

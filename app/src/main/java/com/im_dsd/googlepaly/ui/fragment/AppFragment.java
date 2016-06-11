@@ -6,9 +6,9 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.im_dsd.googlepaly.domain.AppBean;
-import com.im_dsd.googlepaly.http.protocol.AppFragmentProtocol;
+import com.im_dsd.googlepaly.http.protocol.AppProtocol;
 import com.im_dsd.googlepaly.ui.adapter.MyBaseAdapter;
-import com.im_dsd.googlepaly.ui.holder.AppFragmentHolder;
+import com.im_dsd.googlepaly.ui.holder.AppHolder;
 import com.im_dsd.googlepaly.ui.holder.BaseHolder;
 import com.im_dsd.googlepaly.ui.view.LoadingPage;
 import com.im_dsd.googlepaly.utils.UIUtils;
@@ -44,7 +44,7 @@ public class AppFragment extends BaseFragment {
 
     @Override
     public LoadingPage.ResultState OnLoadDate() {
-        final AppFragmentProtocol protocol = new AppFragmentProtocol();
+        final AppProtocol protocol = new AppProtocol();
 
         mListData = protocol.getData(0);
 
@@ -73,7 +73,7 @@ public class AppFragment extends BaseFragment {
 
         @Override
         public BaseHolder getHolder() {
-            return new AppFragmentHolder();
+            return new AppHolder();
         }
     }
 }

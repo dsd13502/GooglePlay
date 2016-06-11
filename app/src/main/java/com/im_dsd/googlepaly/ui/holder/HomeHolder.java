@@ -21,7 +21,7 @@ import butterknife.ButterKnife;
  * Created by im_dsd on 16-6-5.
  */
 
-public class HomeFragmentHolder extends BaseHolder<HomeBean.AppInfo> {
+public class HomeHolder extends BaseHolder<HomeBean.AppInfo> {
 
 
     @Bind(R.id.iv_icon)

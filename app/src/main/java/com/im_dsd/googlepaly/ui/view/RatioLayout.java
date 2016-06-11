@@ -47,6 +47,33 @@ public class RatioLayout extends FrameLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
+        //获取宽度
+        int widthSize = MeasureSpec.getSize(widthMeasureSpec);
+        //获取宽度的模式
+        int widthMode = MeasureSpec.getMode(widthMeasureSpec);
+        //获取高度
+        int heitgtSize = MeasureSpec.getSize(heightMeasureSpec);
+        //获取高度的测量模式
+        int heightMode = MeasureSpec.getMode(heightMeasureSpec);
+
+        //在宽可以确定下来，高不确定模式，并且 ratio不为 0 时，
+        if (widthMode == MeasureSpec.EXACTLY && heightMode != MeasureSpec.EXACTLY
+                && ratio != 0)
+        {
+            //使用布局的宽度减去左右的 padding 获取的就是 imageView的宽度
+            int imageWidth = widthSize - getPaddingLeft() - getPaddingRight();
+
+            //根据比例获取imageView的高度
+            int imageHeight = (int)(imageWidth / ratio);
+
+            //推算出布局的高度
+            heitgtSize = imageHeight + getPaddingBottom() + getPaddingTop();
+
+
+            //根据布局高度, 推算heightMeasureSpec
+            heightMeasureSpec = MeasureSpec.makeMeasureSpec(heitgtSize,MeasureSpec.EXACTLY);
+        }
+
         super.onMeasure(widthMeasureSpec, heightMeasureSpec);
     }
 }

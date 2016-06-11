@@ -16,10 +16,12 @@ import java.io.IOException;
 
 import static com.im_dsd.googlepaly.ui.fragment.BaseFragment.TAG;
 
+
 /**
  * Created by im_dsd on 16-6-6.
+ * @param <T> 返回的数据类型，基本上是一个集合。
+ *
  */
-
 public abstract class BaseProtocol<T> {
 
     /**

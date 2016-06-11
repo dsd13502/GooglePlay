@@ -7,10 +7,10 @@ import android.view.View;
 import android.widget.ListView;
 
 import com.im_dsd.googlepaly.domain.HomeBean;
-import com.im_dsd.googlepaly.http.protocol.HomeFragmentProtocol;
+import com.im_dsd.googlepaly.http.protocol.HomeProtocol;
 import com.im_dsd.googlepaly.ui.adapter.MyBaseAdapter;
 import com.im_dsd.googlepaly.ui.holder.BaseHolder;
-import com.im_dsd.googlepaly.ui.holder.HomeFragmentHolder;
+import com.im_dsd.googlepaly.ui.holder.HomeHolder;
 import com.im_dsd.googlepaly.ui.view.LoadingPage;
 import com.im_dsd.googlepaly.utils.UIUtils;
 
@@ -47,7 +47,7 @@ public class HomeFragment extends BaseFragment {
     public LoadingPage.ResultState OnLoadDate() {
 
         //加载数据
-        final HomeFragmentProtocol protocol = new HomeFragmentProtocol();
+        final HomeProtocol protocol = new HomeProtocol();
 
         HomeBean data = protocol.getData(0);
         if (data != null)
@@ -90,7 +90,7 @@ public class HomeFragment extends BaseFragment {
 
         @Override
         public BaseHolder getHolder() {
-            return new HomeFragmentHolder();
+            return new HomeHolder();
         }
 
 
