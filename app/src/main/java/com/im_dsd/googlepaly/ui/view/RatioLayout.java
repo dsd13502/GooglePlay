@@ -5,6 +5,7 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Build;
 import android.util.AttributeSet;
+import android.util.Log;
 import android.widget.FrameLayout;
 
 import com.im_dsd.googlepaly.R;
@@ -15,14 +16,14 @@ import com.im_dsd.googlepaly.R;
 
 public class RatioLayout extends FrameLayout {
 
-    private float ratio;
+    public static final String TAG = "RatioLayout";
+    private float ratio = 0;
 
-    public RatioLayout(Context context) {
-        super(context,null,0);
+    public RatioLayout(Context context) {this(context,null,0);
     }
 
     public RatioLayout(Context context, AttributeSet attrs) {
-        super(context, attrs,0);
+        this(context, attrs,0);
     }
 
     public RatioLayout(Context context, AttributeSet attrs, int defStyleAttr) {
@@ -34,6 +35,7 @@ public class RatioLayout extends FrameLayout {
         // 根据属性id获取属性值, 方式: R.styleable.名称_属性
         ratio = typedArray.getFloat(R.styleable.RatioLayout_ratio, 0);
 
+        Log.i(TAG, "RatioLayout:  ratio = typedArray.getFloat(R.styleable.RatioLayout_ratio, 0);");
         //释放内存
         typedArray.recycle();
     }
@@ -47,6 +49,7 @@ public class RatioLayout extends FrameLayout {
     @Override
     protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
 
+        Log.i(TAG, "ratio: " + ratio);
         //获取宽度
         int widthSize = MeasureSpec.getSize(widthMeasureSpec);
         //获取宽度的模式
@@ -60,6 +63,7 @@ public class RatioLayout extends FrameLayout {
         if (widthMode == MeasureSpec.EXACTLY && heightMode != MeasureSpec.EXACTLY
                 && ratio != 0)
         {
+            Log.i(TAG, "onMeasure: 进来判断了");
             //使用布局的宽度减去左右的 padding 获取的就是 imageView的宽度
             int imageWidth = widthSize - getPaddingLeft() - getPaddingRight();
 
