@@ -85,10 +85,15 @@ public abstract class BaseFragment extends Fragment {
             mLoadingPage.LoadDate();
         }
     }
+
+    /**
+     * 创建在网络加载成功后的布局
+     * @return 界面
+     */
     public abstract  View  OnCreateSuccessView();
 
     /**
-     * 加载数据
+     * 加载网络数据
      * @return 加载数据之后的状态
      */
     public abstract LoadingPage.ResultState OnLoadDate();

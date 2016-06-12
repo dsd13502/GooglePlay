@@ -2,7 +2,6 @@ package com.im_dsd.googlepaly.ui.holder;
 
 import android.text.format.Formatter;
 import android.view.View;
-import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.RatingBar;
 import android.widget.TextView;
@@ -32,10 +31,6 @@ public class AppHolder extends BaseHolder<AppBean> {
     RatingBar rbStar;
     @Bind(R.id.tv_size)
     TextView tvSize;
-    @Bind(R.id.fl_download)
-    FrameLayout flDownload;
-    @Bind(R.id.tv_download)
-    TextView tvDownload;
     @Bind(R.id.tv_desc)
     TextView tvDesc;
     private BitmapUtils mBitmapHelper;
