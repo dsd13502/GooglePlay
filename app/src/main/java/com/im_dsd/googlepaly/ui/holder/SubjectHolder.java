@@ -5,7 +5,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 
 import com.im_dsd.googlepaly.R;
-import com.im_dsd.googlepaly.SubjectBean;
+import com.im_dsd.googlepaly.domain.SubjectBean;
 import com.im_dsd.googlepaly.http.HttpHelper;
 import com.im_dsd.googlepaly.utils.BitmapHelper;
 import com.im_dsd.googlepaly.utils.UIUtils;

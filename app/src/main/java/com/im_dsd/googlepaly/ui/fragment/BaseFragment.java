@@ -86,6 +86,11 @@ public abstract class BaseFragment extends Fragment {
         }
     }
     public abstract  View  OnCreateSuccessView();
+
+    /**
+     * 加载数据
+     * @return 加载数据之后的状态
+     */
     public abstract LoadingPage.ResultState OnLoadDate();
 
 }

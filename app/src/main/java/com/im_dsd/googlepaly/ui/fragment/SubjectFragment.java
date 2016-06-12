@@ -5,7 +5,7 @@ import android.graphics.drawable.ColorDrawable;
 import android.view.View;
 import android.widget.ListView;
 
-import com.im_dsd.googlepaly.SubjectBean;
+import com.im_dsd.googlepaly.domain.SubjectBean;
 import com.im_dsd.googlepaly.http.protocol.SubjectProtocol;
 import com.im_dsd.googlepaly.ui.adapter.MyBaseAdapter;
 import com.im_dsd.googlepaly.ui.holder.BaseHolder;
