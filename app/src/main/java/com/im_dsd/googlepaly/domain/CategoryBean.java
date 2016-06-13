@@ -8,14 +8,12 @@ import java.util.List;
  */
 
 public class CategoryBean {
-
-
+    private boolean isTitle = false;
     /**
      * title : 游戏
      * infos : [{"url1":"image/category_game_0.jpg","url2":"image/category_game_1.jpg","url3":"image/category_game_2.jpg","name1":"休闲","name2":"棋牌","name3":"益智"},{"url1":"image/category_game_3.jpg","url2":"image/category_game_4.jpg","url3":"image/category_game_5.jpg","name1":"射击","name2":"体育","name3":"儿童"},{"url1":"image/category_game_6.jpg","url2":"image/category_game_7.jpg","url3":"image/category_game_8.jpg","name1":"网游","name2":"角色","name3":"策略"},{"url1":"image/category_game_9.jpg","url2":"image/category_game_10.jpg","url3":"","name1":"经营","name2":"竞速","name3":""}]
      */
 
-    private boolean isTitle;
     private String title;
     /**
      * url1 : image/category_game_0.jpg
@@ -25,13 +23,9 @@ public class CategoryBean {
      * name2 : 棋牌
      * name3 : 益智
      */
+
     private List<CategoryInfo> infos;
 
-    /**
-     * 判读时候是标题
-     *
-     * @return
-     */
     public boolean isTitle() {
         return isTitle;
     }
@@ -44,13 +38,7 @@ public class CategoryBean {
         return title;
     }
 
-
     public void setTitle(String title) {
-        this.title = title;
-
-    }
-
-    public void setTitle(int position, String title) {
         this.title = title;
     }
 
@@ -61,6 +49,7 @@ public class CategoryBean {
     public void setInfos(List<CategoryInfo> infos) {
         this.infos = infos;
     }
+
 
     public static class CategoryInfo {
         private String url1;

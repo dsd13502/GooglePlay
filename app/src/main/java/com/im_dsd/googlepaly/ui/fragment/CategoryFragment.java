@@ -1,11 +1,14 @@
 package com.im_dsd.googlepaly.ui.fragment;
 
+import android.util.Log;
 import android.view.View;
 
 import com.im_dsd.googlepaly.domain.CategoryBean;
 import com.im_dsd.googlepaly.http.protocol.CategoryProtocol;
 import com.im_dsd.googlepaly.ui.adapter.MyBaseAdapter;
 import com.im_dsd.googlepaly.ui.holder.BaseHolder;
+import com.im_dsd.googlepaly.ui.holder.CategoryHolder;
+import com.im_dsd.googlepaly.ui.holder.TitleHolder;
 import com.im_dsd.googlepaly.ui.view.LoadingPage;
 import com.im_dsd.googlepaly.ui.view.MyListView;
 import com.im_dsd.googlepaly.utils.UIUtils;
@@ -20,6 +23,7 @@ import java.util.List;
 public class CategoryFragment extends BaseFragment {
 
 
+    public static final String TAG = "CategoryFragment";
     private List<CategoryBean.CategoryInfo> mInfoList;
     private ArrayList<String> mTitleList;
     private ArrayList<CategoryBean> mDataList;
@@ -28,6 +32,7 @@ public class CategoryFragment extends BaseFragment {
     public View OnCreateSuccessView() {
 
         MyListView myListView = new MyListView(UIUtils.getContext());
+
         myListView.setAdapter(new CategoryAdapter(mDataList));
 
         return myListView;
@@ -37,13 +42,16 @@ public class CategoryFragment extends BaseFragment {
     public LoadingPage.ResultState OnLoadDate() {
 
         CategoryProtocol protocol = new CategoryProtocol();
+
         mDataList = protocol.getData(0);
 
+        Log.i(TAG, "OnLoadDate: mDataList.size()  " + mDataList.size());
         return check(mDataList);
     }
 
     class CategoryAdapter extends MyBaseAdapter<CategoryBean>
     {
+
 
         @Override
         public boolean hasLoadMore() {
@@ -51,18 +59,21 @@ public class CategoryFragment extends BaseFragment {
             return false;
         }
 
+
         @Override
-        public int getItemViewType(int position) {
-
-
+        public int getInnerType(int position) {
+            Log.i(TAG, "getInnerType: position" + position);
             if (getItem(position).isTitle())
             {
-               return  getInnerType(position) + 1;
+                return  super.getInnerType(position) + 1;
             }
             else
             {
-                return getInnerType(position);
+                mInfoList = getItem(position).getInfos();
+                return super.getInnerType(position);
+
             }
+
         }
 
         @Override
@@ -82,15 +93,16 @@ public class CategoryFragment extends BaseFragment {
 
         @Override
         public BaseHolder<CategoryBean> getHolder(int position) {
+            Log.i(TAG, "getHolder: position" + position);
             if (getItem(position).isTitle())
             {
-
+                return  new TitleHolder();
             }
             else
             {
-
+                return new CategoryHolder(mInfoList.get(position));
             }
-            return null;
+
         }
     }
 }

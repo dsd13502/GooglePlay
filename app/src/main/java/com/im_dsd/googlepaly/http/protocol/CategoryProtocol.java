@@ -1,5 +1,7 @@
 package com.im_dsd.googlepaly.http.protocol;
 
+import android.util.Log;
+
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
@@ -15,6 +17,8 @@ import java.util.Iterator;
  */
 
 public class CategoryProtocol extends BaseProtocol<ArrayList<CategoryBean>> {
+
+    public static final String TAG = "CategoryProtocol";
 
     @Override
     protected ArrayList<CategoryBean> parseJson(String json) {
@@ -37,9 +41,12 @@ public class CategoryProtocol extends BaseProtocol<ArrayList<CategoryBean>> {
             //如果是标题复制一份出来，让他自己单独一个房间，方便判断，取值。
             if(jsonObject.has("title"))
             {
-                CategoryBean fromJson = gson.fromJson(jsonObject.get("title"), CategoryBean.class);
-                fromJson.setTitle(true);
-                list.add(fromJson);
+                String title = jsonObject.get("title").getAsString();
+                Log.i(TAG, "parseJson: " + title);
+                CategoryBean categoryBean = new CategoryBean();
+                categoryBean.setTitle(title);
+                categoryBean.setTitle(true);
+                list.add(categoryBean);
 
             }
 
