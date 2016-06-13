@@ -1,34 +1,66 @@
 package com.im_dsd.googlepaly.ui.fragment;
 
-import android.os.Bundle;
-import android.support.annotation.Nullable;
-import android.view.LayoutInflater;
 import android.view.View;
-import android.view.ViewGroup;
-import android.widget.TextView;
 
+import com.im_dsd.googlepaly.domain.CategoryBean;
+import com.im_dsd.googlepaly.http.protocol.CategoryProtocol;
+import com.im_dsd.googlepaly.ui.adapter.MyBaseAdapter;
+import com.im_dsd.googlepaly.ui.holder.BaseHolder;
 import com.im_dsd.googlepaly.ui.view.LoadingPage;
+import com.im_dsd.googlepaly.ui.view.MyListView;
 import com.im_dsd.googlepaly.utils.UIUtils;
 
+import java.util.ArrayList;
+import java.util.List;
+
 /**
+ * 分类
  * Created by im_dsd on 16-6-3.
  */
 public class CategoryFragment extends BaseFragment {
-    @Nullable
-    @Override
-    public View onCreateView(LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        TextView tv = new TextView(UIUtils.getContext());
-        tv.setText("CategoryFragment");
-        return tv;
-    }
+
+
+    private List<CategoryBean.CategoryInfo> mInfoList;
+    private ArrayList<String> mTitleList;
+    private ArrayList<CategoryBean> mDataList;
 
     @Override
     public View OnCreateSuccessView() {
-        return null;
+
+        MyListView myListView = new MyListView(UIUtils.getContext());
+        myListView.setAdapter(new CategoryAdapter(mDataList));
+
+        return myListView;
     }
 
     @Override
     public LoadingPage.ResultState OnLoadDate() {
-        return LoadingPage.ResultState.STATE_EMPTY;
+
+        CategoryProtocol protocol = new CategoryProtocol();
+        mDataList = protocol.getData(0);
+
+        return check(mDataList);
+    }
+
+    class CategoryAdapter extends MyBaseAdapter<CategoryBean>
+    {
+
+        @Override
+        public boolean hasLoadMore() {
+            //去掉加载更多功能
+            return false;
+        }
+
+        /**
+         * @param mArrayListData 需要使用的数据的集合
+         */
+        public CategoryAdapter(ArrayList<CategoryBean> mArrayListData) {
+            super(mArrayListData);
+        }
+
+        @Override
+        public BaseHolder<CategoryBean> getHolder() {
+            return null;
+        }
     }
 }

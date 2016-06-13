@@ -16,6 +16,7 @@ import static com.im_dsd.googlepaly.ui.holder.LoadMoreHolder.TYPE_HAS_MORE;
 /**
  * 万能的BaseAapter
  * Created by im_dsd on 16-6-4.
+ * @param <T> 需要使用的数据的集合泛型
  */
 
 public abstract class MyBaseAdapter<T> extends BaseAdapter {
@@ -26,10 +27,10 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
     private final int VIEW_TYPE_COUNT = 2;
 
     //加载更多的ListView条目
-    private final int VIEW_TYPE_MORE = 1;
+    private final int VIEW_TYPE_MORE = 0;
 
     //普通ListView条目
-    private final int VIEW_TYPE_NORMAL = 0;
+    private final int VIEW_TYPE_NORMAL = 1;
 
     private final ArrayList<T> mArrayListData;
 
