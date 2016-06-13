@@ -51,15 +51,45 @@ public class CategoryFragment extends BaseFragment {
             return false;
         }
 
+        @Override
+        public int getItemViewType(int position) {
+
+
+            if (getItem(position).isTitle())
+            {
+               return  getInnerType(position) + 1;
+            }
+            else
+            {
+                return getInnerType(position);
+            }
+        }
+
+        @Override
+        public int getViewTypeCount() {
+            return super.getViewTypeCount() + 1;
+        }
+
+
+
         /**
          * @param mArrayListData 需要使用的数据的集合
          */
         public CategoryAdapter(ArrayList<CategoryBean> mArrayListData) {
             super(mArrayListData);
+
         }
 
         @Override
-        public BaseHolder<CategoryBean> getHolder() {
+        public BaseHolder<CategoryBean> getHolder(int position) {
+            if (getItem(position).isTitle())
+            {
+
+            }
+            else
+            {
+
+            }
             return null;
         }
     }

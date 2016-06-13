@@ -1,6 +1,5 @@
 package com.im_dsd.googlepaly.domain;
 
-import java.util.ArrayList;
 import java.util.List;
 
 /**
@@ -16,8 +15,8 @@ public class CategoryBean {
      * infos : [{"url1":"image/category_game_0.jpg","url2":"image/category_game_1.jpg","url3":"image/category_game_2.jpg","name1":"休闲","name2":"棋牌","name3":"益智"},{"url1":"image/category_game_3.jpg","url2":"image/category_game_4.jpg","url3":"image/category_game_5.jpg","name1":"射击","name2":"体育","name3":"儿童"},{"url1":"image/category_game_6.jpg","url2":"image/category_game_7.jpg","url3":"image/category_game_8.jpg","name1":"网游","name2":"角色","name3":"策略"},{"url1":"image/category_game_9.jpg","url2":"image/category_game_10.jpg","url3":"","name1":"经营","name2":"竞速","name3":""}]
      */
 
+    private boolean isTitle;
     private String title;
-    private ArrayList<String> titleList;
     /**
      * url1 : image/category_game_0.jpg
      * url2 : image/category_game_1.jpg
@@ -26,35 +25,35 @@ public class CategoryBean {
      * name2 : 棋牌
      * name3 : 益智
      */
-
     private List<CategoryInfo> infos;
 
     /**
-     * 获取json中最后一个title，后者是最后添加的title
-     * @return 最后一个title
+     * 判读时候是标题
+     *
+     * @return
      */
+    public boolean isTitle() {
+        return isTitle;
+    }
+
+    public void setTitle(boolean isTitle) {
+        this.isTitle = isTitle;
+    }
+
     public String getTitle() {
         return title;
     }
 
-    public String getTitle(int position) {
-        return titleList.get(position);
-    }
-
-    public ArrayList<String> getTitleList()
-    {
-        return titleList;
-    }
 
     public void setTitle(String title) {
         this.title = title;
-        titleList.add(title);
+
     }
 
-    public void setTitle(int position,String title) {
+    public void setTitle(int position, String title) {
         this.title = title;
-        titleList.set(position,title);
     }
+
     public List<CategoryInfo> getInfos() {
         return infos;
     }

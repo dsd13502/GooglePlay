@@ -3,6 +3,7 @@ package com.im_dsd.googlepaly.http.protocol;
 import com.google.gson.Gson;
 import com.google.gson.JsonArray;
 import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
 import com.im_dsd.googlepaly.domain.CategoryBean;
 
@@ -30,7 +31,20 @@ public class CategoryProtocol extends BaseProtocol<ArrayList<CategoryBean>> {
         while (iterator.hasNext())
         {
             JsonElement element = iterator.next();
+
+            JsonObject jsonObject = element.getAsJsonObject();
+
+            //如果是标题复制一份出来，让他自己单独一个房间，方便判断，取值。
+            if(jsonObject.has("title"))
+            {
+                CategoryBean fromJson = gson.fromJson(jsonObject.get("title"), CategoryBean.class);
+                fromJson.setTitle(true);
+                list.add(fromJson);
+
+            }
+
             CategoryBean fromJson = gson.fromJson(element, CategoryBean.class);
+
             list.add(fromJson);
 
         }

@@ -70,6 +70,11 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
         }
     }
 
+    /**
+     * 获取条目展示类型
+     * @param position
+     * @return
+     */
     public int getInnerType(int position) {
         return VIEW_TYPE_NORMAL;
     }
@@ -104,7 +109,7 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
             }
             //如果类型是普通类型，加载普通类型
             else if (getItemViewType(position) == getInnerType(position)) {
-                viewHolder = getHolder();
+                viewHolder = getHolder(position);
             }
 
         }
@@ -142,7 +147,7 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
      *
      * @return 开发者自己实现的Holder
      */
-    public abstract BaseHolder<T> getHolder();
+    public abstract BaseHolder<T> getHolder(int position);
 
     /**
      * 设置对于加载更多数据的监听。
