@@ -110,8 +110,6 @@ public abstract class MyBaseAdapter<T> extends BaseAdapter {
             viewHolder = ((BaseHolder) view.getTag());
         } else {
 
-            Log.i(TAG, "getView: getItemViewType(position)" + getItemViewType(position));
-            Log.i(TAG, "getView: getInnerType(position)" + getInnerType(position));
 
             //展示加载跟多类型
             if (getItemViewType(position) == VIEW_TYPE_MORE) {

@@ -43,21 +43,6 @@ public class CategoryHolder extends BaseHolder<CategoryBean> {
     LinearLayout llGrid3;
     private BitmapUtils mBitmapUtils;
 
-    public CategoryHolder(CategoryBean.CategoryInfo data) {
-
-        super();
-
-        tvName1.setText(data.getName1());
-        tvName2.setText(data.getName2());
-        tvName3.setText(data.getName3());
-
-        mBitmapUtils.display(ivIcon1,HttpHelper.URL + "image?name="
-                + data.getUrl1());
-        mBitmapUtils.display(ivIcon2,HttpHelper.URL + "image?name="
-                + data.getUrl2());
-        mBitmapUtils.display(ivIcon3,HttpHelper.URL + "image?name="
-                + data.getUrl3());
-    }
 
     @Override
     public View setItemView() {
@@ -73,7 +58,16 @@ public class CategoryHolder extends BaseHolder<CategoryBean> {
 
     @Override
     public void refreshView(CategoryBean data) {
+        tvName1.setText(data.getName1());
+        tvName2.setText(data.getName2());
+        tvName3.setText(data.getName3());
 
+        mBitmapUtils.display(ivIcon1,HttpHelper.URL + "image?name="
+                + data.getUrl1());
+        mBitmapUtils.display(ivIcon2,HttpHelper.URL + "image?name="
+                + data.getUrl2());
+        mBitmapUtils.display(ivIcon3,HttpHelper.URL + "image?name="
+                + data.getUrl3());
     }
 
 

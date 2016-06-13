@@ -14,7 +14,6 @@ import com.im_dsd.googlepaly.ui.view.MyListView;
 import com.im_dsd.googlepaly.utils.UIUtils;
 
 import java.util.ArrayList;
-import java.util.List;
 
 /**
  * 分类
@@ -24,7 +23,7 @@ public class CategoryFragment extends BaseFragment {
 
 
     public static final String TAG = "CategoryFragment";
-    private List<CategoryBean.CategoryInfo> mInfoList;
+
     private ArrayList<String> mTitleList;
     private ArrayList<CategoryBean> mDataList;
 
@@ -53,6 +52,8 @@ public class CategoryFragment extends BaseFragment {
     {
 
 
+        private int position;
+
         @Override
         public boolean hasLoadMore() {
             //去掉加载更多功能
@@ -62,14 +63,14 @@ public class CategoryFragment extends BaseFragment {
 
         @Override
         public int getInnerType(int position) {
-            Log.i(TAG, "getInnerType: position" + position);
+
             if (getItem(position).isTitle())
             {
                 return  super.getInnerType(position) + 1;
             }
             else
             {
-                mInfoList = getItem(position).getInfos();
+
                 return super.getInnerType(position);
 
             }
@@ -93,6 +94,9 @@ public class CategoryFragment extends BaseFragment {
 
         @Override
         public BaseHolder<CategoryBean> getHolder(int position) {
+
+
+
             Log.i(TAG, "getHolder: position" + position);
             if (getItem(position).isTitle())
             {
@@ -100,7 +104,8 @@ public class CategoryFragment extends BaseFragment {
             }
             else
             {
-                return new CategoryHolder(mInfoList.get(position));
+
+                return new CategoryHolder();
             }
 
         }
