@@ -7,6 +7,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
 import com.im_dsd.googlepaly.http.HttpHelper;
@@ -25,7 +26,7 @@ public class HomeHeaderHolder extends BaseHolder<ArrayList<String>> {
     private  ArrayList<String> mDataList;
     public static final String TAG = "HomeHeaderHolder";
     private ViewPager mViewPager;
-
+    private LinearLayout mIndicator;
 
 
     @Override
@@ -51,8 +52,26 @@ public class HomeHeaderHolder extends BaseHolder<ArrayList<String>> {
         mViewPager.setLayoutParams(viewPagerParams);
 
 
+        //【1】初始化轮播指示器
+        mIndicator = new LinearLayout(UIUtils.getContext());
+        //【2】设置轮播指示器大小
+        RelativeLayout.LayoutParams indicatorParams = new  RelativeLayout.LayoutParams(
+                RelativeLayout.LayoutParams.WRAP_CONTENT,
+                RelativeLayout.LayoutParams.WRAP_CONTENT
+        );
+        //【3】为 indicator 设置规则
+        indicatorParams.addRule(RelativeLayout.ALIGN_PARENT_BOTTOM);
+        indicatorParams.addRule(RelativeLayout.ALIGN_PARENT_RIGHT);
+        //【4】添加布局参数
+        mIndicator.setLayoutParams(indicatorParams);
+        //【5】设置 mIndicator padding
+        int padding = UIUtils.dip2px(5);
+        mIndicator.setPadding(padding,padding,padding,padding);
 
-        //将轮播条布局
+
+        //将mIndicator添加到根布局中
+        relativeLayout.addView(mIndicator);
+        //将轮播条布局添加到根布局中
         relativeLayout.addView(mViewPager);
 
 
