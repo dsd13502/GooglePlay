@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/activity_app_detail"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context="com.im_dsd.googlepaly.ui.activity.AppDetailActivity">
+
+    <LinearLayout
+        android:id="@+id/ll_app_detail_root_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:orientation="vertical">
+
+        <FrameLayout
+            android:id="@+id/fl_app_detail_appInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/list_item_bg_selector" >
+        </FrameLayout>
+
+        <FrameLayout
+            android:id="@+id/fl_app_detail_safeInfo"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/list_item_bg_selector" >
+        </FrameLayout>
+
+        <HorizontalScrollView
+            android:id="@+id/hsv_app_detail_pics"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="#9e9e9e" >
+        </HorizontalScrollView>
+
+        <FrameLayout
+            android:id="@+id/fl_app_detail_des"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@drawable/list_item_bg_selector"
+            android:padding="3dp" >
+        </FrameLayout>
+
+    </LinearLayout>
+</>

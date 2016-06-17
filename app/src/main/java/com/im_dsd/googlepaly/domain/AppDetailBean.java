@@ -6,7 +6,7 @@ import java.util.List;
  * Created by im_dsd on 16-6-14.
  */
 
-public class HomeDetailBean {
+public class AppDetailBean {
 
 
     /**

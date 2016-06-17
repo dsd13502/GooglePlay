@@ -1,6 +1,5 @@
 package com.im_dsd.googlepaly.ui.holder;
 
-import android.content.Intent;
 import android.text.format.Formatter;
 import android.view.View;
 import android.widget.ImageView;
@@ -10,9 +9,7 @@ import android.widget.TextView;
 import com.im_dsd.googlepaly.R;
 import com.im_dsd.googlepaly.domain.HomeBean;
 import com.im_dsd.googlepaly.http.HttpHelper;
-import com.im_dsd.googlepaly.ui.activity.AppDetailActivity;
 import com.im_dsd.googlepaly.utils.BitmapHelper;
-import com.im_dsd.googlepaly.utils.ConstantValuesUtils;
 import com.im_dsd.googlepaly.utils.UIUtils;
 import com.lidroid.xutils.BitmapUtils;
 

@@ -8,7 +8,6 @@ import android.widget.Toast;
 
 import com.im_dsd.googlepaly.domain.HomeBean;
 import com.im_dsd.googlepaly.http.protocol.HomeProtocol;
-import com.im_dsd.googlepaly.ui.activity.AppDetailActivity;
 import com.im_dsd.googlepaly.ui.adapter.MyBaseAdapter;
 import com.im_dsd.googlepaly.ui.holder.BaseHolder;
 import com.im_dsd.googlepaly.ui.holder.HomeHeaderHolder;
