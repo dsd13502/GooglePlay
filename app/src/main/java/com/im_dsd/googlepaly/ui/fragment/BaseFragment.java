@@ -93,7 +93,7 @@ public abstract class BaseFragment extends Fragment {
     public abstract  View  OnCreateSuccessView();
 
     /**
-     * 加载网络数据
+     * 加载网络数据，注意次方法将会运行在子线程中
      * @return 加载数据之后的状态
      */
     public abstract LoadingPage.ResultState OnLoadDate();

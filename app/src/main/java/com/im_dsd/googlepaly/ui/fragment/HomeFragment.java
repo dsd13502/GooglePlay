@@ -2,6 +2,7 @@ package com.im_dsd.googlepaly.ui.fragment;
 
 import android.util.Log;
 import android.view.View;
+import android.widget.Toast;
 
 import com.im_dsd.googlepaly.domain.HomeBean;
 import com.im_dsd.googlepaly.http.protocol.HomeProtocol;
@@ -26,6 +27,7 @@ public class HomeFragment extends BaseFragment {
     private ArrayList<HomeBean.AppInfo> mDataList = null;
     private HomeAdapter mHomeAdapter;
     private HomeHeaderHolder mHomeHeaderHolder;
+    private ArrayList<String> mPictureList = null;
 
 
     @Override
@@ -51,28 +53,37 @@ public class HomeFragment extends BaseFragment {
         if (data != null)
         {
             mDataList = data.getList();
+            mPictureList = data.getPicture();
+
+            //初始化头布局Holder
+            mHomeHeaderHolder = new HomeHeaderHolder();
+            //初始化头布局Holder的数据
+            mHomeHeaderHolder.setData(mPictureList);
+
+            mHomeAdapter = new HomeAdapter(mDataList);
+            mHomeAdapter.setOnLoadMoreDataListener(new MyBaseAdapter.OnLoadMoreDataListener() {
+                @Override
+                public ArrayList OnLoadMoreData() {
+
+                    ArrayList<HomeBean.AppInfo> loadMoreList =
+                            protocol.getData(mDataList.size()).getList();
+
+                    return loadMoreList;
+                }
+            });
         }
         else
         {
             Log.i(TAG, "OnLoadDate: data == null");
+            UIUtils.runOnUiThread(new Runnable() {
+                @Override
+                public void run() {
+                    Toast.makeText(UIUtils.getContext(), "网络异常请检查网络", Toast.LENGTH_SHORT).show();
+                }
+            });
         }
 
-        //初始化头布局Holder
-        mHomeHeaderHolder = new HomeHeaderHolder();
-        //初始化头布局Holder的数据
-        mHomeHeaderHolder.setData(data.getPicture());
 
-        mHomeAdapter = new HomeAdapter(mDataList);
-        mHomeAdapter.setOnLoadMoreDataListener(new MyBaseAdapter.OnLoadMoreDataListener() {
-            @Override
-            public ArrayList OnLoadMoreData() {
-
-                ArrayList<HomeBean.AppInfo> loadMoreList =
-                         protocol.getData(mDataList.size()).getList();
-
-                return loadMoreList;
-            }
-        });
         return check(mDataList);
     }
 
