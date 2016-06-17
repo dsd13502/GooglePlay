@@ -1,5 +1,6 @@
 package com.im_dsd.googlepaly.ui.holder;
 
+import android.content.Intent;
 import android.text.format.Formatter;
 import android.view.View;
 import android.widget.ImageView;
@@ -9,7 +10,9 @@ import android.widget.TextView;
 import com.im_dsd.googlepaly.R;
 import com.im_dsd.googlepaly.domain.HomeBean;
 import com.im_dsd.googlepaly.http.HttpHelper;
+import com.im_dsd.googlepaly.ui.activity.AppDetailActivity;
 import com.im_dsd.googlepaly.utils.BitmapHelper;
+import com.im_dsd.googlepaly.utils.ConstantValuesUtils;
 import com.im_dsd.googlepaly.utils.UIUtils;
 import com.lidroid.xutils.BitmapUtils;
 
@@ -44,11 +47,12 @@ public class HomeHolder extends BaseHolder<HomeBean.AppInfo> {
         //绑定 inflate
         ButterKnife.bind(this, itemView);
 
+
         return itemView;
     }
 
     @Override
-    public void refreshView(HomeBean.AppInfo data) {
+    public void refreshView(final HomeBean.AppInfo data) {
 
         //存储单位的自动转换。
         String size = Formatter.formatFileSize(UIUtils.getContext(), data.getSize());
@@ -64,6 +68,7 @@ public class HomeHolder extends BaseHolder<HomeBean.AppInfo> {
         //获取BitmapUtils的封装。
         mBitmapHelper = BitmapHelper.getInstance();
         mBitmapHelper.display(ivIcon, url);
+
 
 
     }

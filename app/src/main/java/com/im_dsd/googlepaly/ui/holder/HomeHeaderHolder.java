@@ -180,7 +180,7 @@ public class HomeHeaderHolder extends BaseHolder<ArrayList<String>> {
 
             String url = HttpHelper.URL + "image?name=" + mDataList.get(position);
 
-            Log.i(TAG, "instantiateItem: url " + url);
+           // Log.i(TAG, "instantiateItem: url " + url);
             mBitmapUtils.display(imageView, url);
 
             container.addView(imageView);

@@ -1,17 +1,21 @@
 package com.im_dsd.googlepaly.ui.fragment;
 
+import android.content.Intent;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Toast;
 
 import com.im_dsd.googlepaly.domain.HomeBean;
 import com.im_dsd.googlepaly.http.protocol.HomeProtocol;
+import com.im_dsd.googlepaly.ui.activity.AppDetailActivity;
 import com.im_dsd.googlepaly.ui.adapter.MyBaseAdapter;
 import com.im_dsd.googlepaly.ui.holder.BaseHolder;
 import com.im_dsd.googlepaly.ui.holder.HomeHeaderHolder;
 import com.im_dsd.googlepaly.ui.holder.HomeHolder;
 import com.im_dsd.googlepaly.ui.view.LoadingPage;
 import com.im_dsd.googlepaly.ui.view.MyListView;
+import com.im_dsd.googlepaly.utils.ConstantValuesUtils;
 import com.im_dsd.googlepaly.utils.UIUtils;
 
 import java.util.ArrayList;
@@ -40,6 +44,15 @@ public class HomeFragment extends BaseFragment {
         //添加头布局
         mListViw.addHeaderView(mHomeHeaderHolder.getItemRootView());
 
+        mListViw.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+                Intent intent = new Intent(UIUtils.getContext(),AppDetailActivity.class);
+                intent.putExtra(ConstantValuesUtils.TO_APP_DETAIL_ACTIVITY_BY_PACKAGE_NAME,
+                        mDataList.get(position).getPackageName());
+                startActivity(intent);
+            }
+        });
         return mListViw;
     }
 
