@@ -70,10 +70,11 @@ public class HomeHeaderHolder extends BaseHolder<ArrayList<String>> {
         mIndicator.setPadding(padding,padding,padding,padding);
 
 
-        //将mIndicator添加到根布局中
-        relativeLayout.addView(mIndicator);
         //将轮播条布局添加到根布局中
         relativeLayout.addView(mViewPager);
+        //将mIndicator添加到根布局中
+        relativeLayout.addView(mIndicator);
+
 
 
         return relativeLayout;
@@ -96,6 +97,7 @@ public class HomeHeaderHolder extends BaseHolder<ArrayList<String>> {
             ImageView view = new ImageView(UIUtils.getContext());
 
             if (i == 0) {
+                Log.i(TAG, "refreshView: i==0");
                 view.setImageResource(R.drawable.indicator_selected);
             } else {
                 view.setImageResource(R.drawable.indicator_normal);
