@@ -18,6 +18,9 @@ import com.lidroid.xutils.BitmapUtils;
 
 import java.util.ArrayList;
 
+import static com.im_dsd.googlepaly.R.drawable.indicator_normal;
+import static com.im_dsd.googlepaly.R.drawable.indicator_selected;
+
 /**
  * Created by im_dsd on 16-6-17.
  */
@@ -28,7 +31,7 @@ public class HomeHeaderHolder extends BaseHolder<ArrayList<String>> {
     public static final String TAG = "HomeHeaderHolder";
     private ViewPager mViewPager;
     private LinearLayout mIndicator;
-
+    private int mPosition = 0;
 
     @Override
     public View setItemView() {
@@ -98,7 +101,7 @@ public class HomeHeaderHolder extends BaseHolder<ArrayList<String>> {
 
             if (i == 0) {
                 Log.i(TAG, "refreshView: i==0");
-                view.setImageResource(R.drawable.indicator_selected);
+                view.setImageResource(indicator_selected);
             } else {
                 view.setImageResource(R.drawable.indicator_normal);
                 params.leftMargin = UIUtils.dip2px(3);// 设置圆点间距
@@ -106,6 +109,36 @@ public class HomeHeaderHolder extends BaseHolder<ArrayList<String>> {
 
             mIndicator.addView(view, params);
         }
+
+        mViewPager.addOnPageChangeListener(new ViewPager.OnPageChangeListener() {
+            @Override
+            public void onPageScrolled(int position, float positionOffset, int positionOffsetPixels) {
+
+            }
+
+            @Override
+            public void onPageSelected(int position) {
+                position = position % mDataList.size();
+
+                ImageView currentView = (ImageView) mIndicator.getChildAt(position);
+
+                currentView.setImageResource(indicator_selected);
+
+                if (position != mPosition)
+                {
+                    ImageView LastView = (ImageView) mIndicator.getChildAt(mPosition);
+
+                    LastView.setImageResource(indicator_normal);
+
+                    mPosition = position;
+                }
+            }
+
+            @Override
+            public void onPageScrollStateChanged(int state) {
+
+            }
+        });
 
         //开始轮播。
         new RunnableTask().start();
