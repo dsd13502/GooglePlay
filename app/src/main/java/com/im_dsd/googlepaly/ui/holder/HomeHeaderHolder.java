@@ -152,7 +152,7 @@ public class HomeHeaderHolder extends BaseHolder<ArrayList<String>> {
 
         public MyAdapter(ArrayList<String> dataList) {
             mDataList = dataList;
-            mBitmapUtils.configDefaultLoadingImage(R.drawable.subject_default);
+          //  mBitmapUtils.configDefaultLoadingImage(subject_default);
         }
 
         @Override

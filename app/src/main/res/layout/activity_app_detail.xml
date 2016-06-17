@@ -13,14 +13,14 @@
         android:orientation="vertical">
 
         <FrameLayout
-            android:id="@+id/fl_app_detail_appInfo"
+            android:id="@+id/fll_detail_app_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/list_item_bg_selector" >
         </FrameLayout>
 
         <FrameLayout
-            android:id="@+id/fl_app_detail_safeInfo"
+            android:id="@+id/fl_detail_safe_info"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:background="@drawable/list_item_bg_selector" >
@@ -42,4 +42,4 @@
         </FrameLayout>
 
     </LinearLayout>
-</>
+</ScrollView>

@@ -1,5 +1,6 @@
 package com.im_dsd.googlepaly.ui.holder;
 
+import android.text.format.Formatter;
 import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
@@ -42,10 +43,11 @@ public class AppDetailAppInfoHolder extends BaseHolder<AppDetailBean> {
     private BitmapUtils mBitmapUtils ;
     @Override
     public View setItemView() {
-        View view = UIUtils.inflate(R.layout.layout_app_detail_appInfo);
+        View view = UIUtils.inflate(R.layout.layout_app_detail_appinfo);
         ButterKnife.bind(this,view);
         mBitmapUtils =  BitmapHelper.getInstance();
         mBitmapUtils.configDefaultLoadingImage(subject_default);
+
         return view;
     }
 
@@ -59,7 +61,8 @@ public class AppDetailAppInfoHolder extends BaseHolder<AppDetailBean> {
             rbStar.setRating((float) data.getStars());
             tvDownloadNum.setText(data.getDownloadNum());
             tvVersion.setText(data.getVersion());
-            tvSize.setText(data.getSize());
+            String fileSize = Formatter.formatFileSize(UIUtils.getContext(), data.getSize());
+            tvSize.setText(fileSize);
         }
         else
         {

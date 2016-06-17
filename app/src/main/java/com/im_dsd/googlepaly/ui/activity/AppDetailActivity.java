@@ -1,6 +1,7 @@
 package com.im_dsd.googlepaly.ui.activity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
@@ -10,6 +11,7 @@ import android.widget.ScrollView;
 import com.im_dsd.googlepaly.R;
 import com.im_dsd.googlepaly.domain.AppDetailBean;
 import com.im_dsd.googlepaly.http.protocol.AppDetailProtocol;
+import com.im_dsd.googlepaly.ui.holder.AppDetailAppInfoHolder;
 import com.im_dsd.googlepaly.ui.view.LoadingPage;
 import com.im_dsd.googlepaly.utils.ConstantValuesUtils;
 import com.im_dsd.googlepaly.utils.UIUtils;
@@ -20,9 +22,9 @@ import butterknife.ButterKnife;
 
 public class AppDetailActivity extends BaseActivity {
     public static final String TAG = "AppDetailActivity";
-    @Bind(R.id.fl_app_detail_appInfo)
+    @Bind(R.id.fll_detail_app_info)
     FrameLayout flAppDetailAppInfo;
-    @Bind(R.id.fl_app_detail_safeInfo)
+    @Bind(R.id.fl_detail_safe_info)
     FrameLayout flAppDetailSafeInfo;
     @Bind(R.id.hsv_app_detail_pics)
     HorizontalScrollView hsvAppDetailPics;
@@ -60,7 +62,7 @@ public class AppDetailActivity extends BaseActivity {
 
         setContentView(mLoadingPage);
 
-
+        mLoadingPage.LoadDate();
     }
 
     private LoadingPage.ResultState OnLoadDate() {
@@ -68,6 +70,7 @@ public class AppDetailActivity extends BaseActivity {
         AppDetailProtocol protocol = new AppDetailProtocol(mPackageName);
         mData = protocol.getData(0);
 
+        Log.i(TAG, "OnLoadDate: mData.getName" + mData.getName());
         if (mData != null) {
             return LoadingPage.ResultState.STATE_SUCCESS;
         } else {
@@ -76,14 +79,20 @@ public class AppDetailActivity extends BaseActivity {
     }
 
     private View OnCreateSuccessView() {
-        View rootView = UIUtils.inflate(R.layout.layout_app_detail_appInfo);
+        View rootView = UIUtils.inflate(R.layout.activity_app_detail);
+
         ButterKnife.bind(this,rootView);
+
         initAppInfo();
         return rootView;
     }
 
     //初始化AppInfo部分的布局，以及数据
     private void initAppInfo() {
+
+        final AppDetailAppInfoHolder holder = new AppDetailAppInfoHolder();
+        holder.setData(mData);
+        flAppDetailAppInfo.addView(holder.getItemRootView());
 
     }
 }
