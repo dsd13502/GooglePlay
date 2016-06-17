@@ -3,6 +3,8 @@
     package="com.im_dsd.googlepaly" >
 
     <uses-permission android:name="android.permission.INTERNET"/>
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE"/>
+
     <application
         android:name=".global.GooglePlayApplication"
         android:allowBackup="true"

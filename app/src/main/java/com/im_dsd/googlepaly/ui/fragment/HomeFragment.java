@@ -1,17 +1,16 @@
 package com.im_dsd.googlepaly.ui.fragment;
 
-import android.graphics.Color;
-import android.graphics.drawable.ColorDrawable;
 import android.util.Log;
 import android.view.View;
-import android.widget.ListView;
 
 import com.im_dsd.googlepaly.domain.HomeBean;
 import com.im_dsd.googlepaly.http.protocol.HomeProtocol;
 import com.im_dsd.googlepaly.ui.adapter.MyBaseAdapter;
 import com.im_dsd.googlepaly.ui.holder.BaseHolder;
+import com.im_dsd.googlepaly.ui.holder.HomeHeaderHolder;
 import com.im_dsd.googlepaly.ui.holder.HomeHolder;
 import com.im_dsd.googlepaly.ui.view.LoadingPage;
+import com.im_dsd.googlepaly.ui.view.MyListView;
 import com.im_dsd.googlepaly.utils.UIUtils;
 
 import java.util.ArrayList;
@@ -23,23 +22,22 @@ public class HomeFragment extends BaseFragment {
 
 
     public static final String TAG = "HomeFragment";
-    private ListView mListViw = null;
+    private MyListView mListViw = null;
     private ArrayList<HomeBean.AppInfo> mDataList = null;
     private HomeAdapter mHomeAdapter;
+    private HomeHeaderHolder mHomeHeaderHolder;
+
 
     @Override
     public View OnCreateSuccessView() {
 
         Log.i(TAG,"OnCreateSuccessView");
-        mListViw = new ListView(UIUtils.getContext());
+        mListViw = new MyListView(UIUtils.getContext());
         mListViw.setAdapter(mHomeAdapter);
 
-        //设置选择后，背景无颜色变化
-        mListViw.setSelector(new ColorDrawable());
-        //去掉分割线
-        mListViw.setDivider(null);
-        //避免滑动黑边
-        mListViw.setCacheColorHint(Color.TRANSPARENT);
+        //添加头布局
+        mListViw.addHeaderView(mHomeHeaderHolder.getItemRootView());
+
         return mListViw;
     }
 
@@ -59,10 +57,12 @@ public class HomeFragment extends BaseFragment {
             Log.i(TAG, "OnLoadDate: data == null");
         }
 
+        //初始化头布局Holder
+        mHomeHeaderHolder = new HomeHeaderHolder();
+        //初始化头布局Holder的数据
+        mHomeHeaderHolder.setData(data.getPicture());
 
         mHomeAdapter = new HomeAdapter(mDataList);
-
-
         mHomeAdapter.setOnLoadMoreDataListener(new MyBaseAdapter.OnLoadMoreDataListener() {
             @Override
             public ArrayList OnLoadMoreData() {

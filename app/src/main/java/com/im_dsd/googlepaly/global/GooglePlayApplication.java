@@ -4,6 +4,8 @@ import android.app.Application;
 import android.content.Context;
 import android.os.Handler;
 
+import com.im_dsd.googlepaly.utils.CrashHandler;
+
 
 /**
  * Created by im_dsd on 16-5-30.
@@ -23,6 +25,9 @@ public class GooglePlayApplication extends Application {
         //获取主线程id
         mainThreadId = android.os.Process.myTid();
 
+        //补货异常
+        CrashHandler crashHandler = CrashHandler.getInstance();
+        crashHandler.init(getApplicationContext());
     }
 
 
