@@ -49,7 +49,8 @@ public class HomeFragment extends BaseFragment {
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
                 Intent intent = new Intent(UIUtils.getContext(),AppDetailActivity.class);
                 intent.putExtra(ConstantValuesUtils.TO_APP_DETAIL_ACTIVITY_BY_PACKAGE_NAME,
-                        mDataList.get(position).getPackageName());
+                        //因为多了一个轮播条，所以要减一
+                        mDataList.get(position - 1).getPackageName());
                 startActivity(intent);
             }
         });
