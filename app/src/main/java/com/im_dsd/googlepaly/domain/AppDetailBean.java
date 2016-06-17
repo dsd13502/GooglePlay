@@ -10,22 +10,21 @@ public class AppDetailBean {
 
 
     /**
-     * author : 亚马逊
-     * date : 2014-05-30
-     * des : 货
-     * downloadNum : 100万+
-     * downloadUrl : app/cn.amazon.mShop.android/cn.amazon.mShop.android.apk
-     * iconUrl : app/cn.amazon.mShop.android/icon.jpg
-     * id : 1608378
-     * name : 亚马逊购物
-     * packageName : cn.amazon.mShop.android
-     * safe : []
-     * screen : ["app/cn.amazon.mShop.android/screen0.jpg","app/cn.amazon.mShop.android/screen1.jpg","app/cn.amazon.mShop.android/screen2.jpg","app/cn.amazon.mShop.android/screen3.jpg","app/cn.amazon.mShop.android/screen4.jpg"]
-     * size : 7351495
-     * stars : 3.5
-     * version : 2.10.0
+     * author : 随身移动
+     * date : 2014-06-12
+     * des : w
+     * downloadNum : 1000万+
+     * downloadUrl : app/cn.etouch.ecalendar/cn.etouch.ecalendar.apk
+     * iconUrl : app/cn.etouch.ecalendar/icon.jpg
+     * id : 1641339
+     * name : 中华万年历日历
+     * packageName : cn.etouch.ecalendar
+     * safe : [{"safeDes":"已通过安智市场安全检测，请放心使用","safeDesColor":0,"safeDesUrl":"app/cn.etouch.ecalendar/safeDesUrl0.jpg","safeUrl":"app/cn.etouch.ecalendar/safeIcon0.jpg"},{"safeDes":"无任何形式的广告","safeDesColor":0,"safeDesUrl":"app/cn.etouch.ecalendar/safeDesUrl1.jpg","safeUrl":"app/cn.etouch.ecalendar/safeIcon1.jpg"}]
+     * screen : ["app/cn.etouch.ecalendar/screen0.jpg","app/cn.etouch.ecalendar/screen1.jpg","app/cn.etouch.ecalendar/screen2.jpg","app/cn.etouch.ecalendar/screen3.jpg"]
+     * size : 5098427
+     * stars : 4.5
+     * version : 4.5.1
      */
-
     private String author;
     private String date;
     private String des;
@@ -38,7 +37,14 @@ public class AppDetailBean {
     private int size;
     private double stars;
     private String version;
-    private List<?> safe;
+    /**
+     * safeDes : 已通过安智市场安全检测，请放心使用
+     * safeDesColor : 0
+     * safeDesUrl : app/cn.etouch.ecalendar/safeDesUrl0.jpg
+     * safeUrl : app/cn.etouch.ecalendar/safeIcon0.jpg
+     */
+
+    private List<SafeInfo> safe;
     private List<String> screen;
 
     public String getAuthor() {
@@ -137,11 +143,11 @@ public class AppDetailBean {
         this.version = version;
     }
 
-    public List<?> getSafe() {
+    public List<SafeInfo> getSafe() {
         return safe;
     }
 
-    public void setSafe(List<?> safe) {
+    public void setSafe(List<SafeInfo> safe) {
         this.safe = safe;
     }
 
@@ -151,5 +157,44 @@ public class AppDetailBean {
 
     public void setScreen(List<String> screen) {
         this.screen = screen;
+    }
+
+    public static class SafeInfo {
+        private String safeDes;
+        private int safeDesColor;
+        private String safeDesUrl;
+        private String safeUrl;
+
+        public String getSafeDes() {
+            return safeDes;
+        }
+
+        public void setSafeDes(String safeDes) {
+            this.safeDes = safeDes;
+        }
+
+        public int getSafeDesColor() {
+            return safeDesColor;
+        }
+
+        public void setSafeDesColor(int safeDesColor) {
+            this.safeDesColor = safeDesColor;
+        }
+
+        public String getSafeDesUrl() {
+            return safeDesUrl;
+        }
+
+        public void setSafeDesUrl(String safeDesUrl) {
+            this.safeDesUrl = safeDesUrl;
+        }
+
+        public String getSafeUrl() {
+            return safeUrl;
+        }
+
+        public void setSafeUrl(String safeUrl) {
+            this.safeUrl = safeUrl;
+        }
     }
 }

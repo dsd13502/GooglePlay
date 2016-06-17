@@ -39,6 +39,7 @@ public class AppDetailActivity extends BaseActivity {
     private AppDetailBean mData;
 
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -63,6 +64,7 @@ public class AppDetailActivity extends BaseActivity {
         setContentView(mLoadingPage);
 
         mLoadingPage.LoadDate();
+
     }
 
     private LoadingPage.ResultState OnLoadDate() {
@@ -81,13 +83,50 @@ public class AppDetailActivity extends BaseActivity {
     private View OnCreateSuccessView() {
         View rootView = UIUtils.inflate(R.layout.activity_app_detail);
 
-        ButterKnife.bind(this,rootView);
+        ButterKnife.bind(this, rootView);
 
+        // 初始化应用详情信息
         initAppInfo();
+        // 初始化安全相关信息
+        initSafe();
+        // 初始化图片信息
+        initPics();
+        // 初始化描述信息
+        initDesc();
+        // 初始化下载布局
+        initDownload();
+
         return rootView;
     }
 
-    //初始化AppInfo部分的布局，以及数据
+    /**
+     *初始化下载布局
+     */
+    private void initDownload() {
+
+    }
+
+    /**
+     * 初始化描述信息
+     */
+    private void initDesc() {
+    }
+
+    /**
+     *  初始化图片信息
+     */
+    private void initPics() {
+    }
+
+    /**
+     * 初始化安全相关信息
+     */
+    private void initSafe() {
+    }
+
+    /**
+     * 初始化AppInfo部分的布局，以及数据
+     */
     private void initAppInfo() {
 
         final AppDetailAppInfoHolder holder = new AppDetailAppInfoHolder();
@@ -95,4 +134,6 @@ public class AppDetailActivity extends BaseActivity {
         flAppDetailAppInfo.addView(holder.getItemRootView());
 
     }
+
+
 }
