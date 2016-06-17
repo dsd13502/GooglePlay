@@ -10,6 +10,7 @@ import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 
+import com.im_dsd.googlepaly.R;
 import com.im_dsd.googlepaly.http.HttpHelper;
 import com.im_dsd.googlepaly.utils.BitmapHelper;
 import com.im_dsd.googlepaly.utils.UIUtils;
@@ -83,6 +84,27 @@ public class HomeHeaderHolder extends BaseHolder<ArrayList<String>> {
 
         mViewPager.setAdapter(new MyAdapter(data));
         mViewPager.setCurrentItem(10000 * mDataList.size());
+
+
+        LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(
+                LinearLayout.LayoutParams.WRAP_CONTENT,
+                LinearLayout.LayoutParams.WRAP_CONTENT);
+
+        for (int i = 0; i < mDataList.size(); i++)
+        {
+
+            ImageView view = new ImageView(UIUtils.getContext());
+
+            if (i == 0) {
+                view.setImageResource(R.drawable.indicator_selected);
+            } else {
+                view.setImageResource(R.drawable.indicator_normal);
+                params.leftMargin = UIUtils.dip2px(3);// 设置圆点间距
+            }
+
+            mIndicator.addView(view, params);
+        }
+
         //开始轮播。
         new RunnableTask().start();
     }
