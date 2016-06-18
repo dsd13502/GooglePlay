@@ -12,6 +12,7 @@ import com.im_dsd.googlepaly.R;
 import com.im_dsd.googlepaly.domain.AppDetailBean;
 import com.im_dsd.googlepaly.http.protocol.AppDetailProtocol;
 import com.im_dsd.googlepaly.ui.holder.AppDetailAppInfoHolder;
+import com.im_dsd.googlepaly.ui.holder.AppDetailPicsInfoHolder;
 import com.im_dsd.googlepaly.ui.holder.AppDetailSafeInfoHolder;
 import com.im_dsd.googlepaly.ui.view.LoadingPage;
 import com.im_dsd.googlepaly.utils.ConstantValuesUtils;
@@ -118,6 +119,9 @@ public class AppDetailActivity extends BaseActivity {
      *  初始化图片信息
      */
     private void initPics() {
+        AppDetailPicsInfoHolder holder = new AppDetailPicsInfoHolder();
+        holder.setData(mData);
+        hsvAppDetailPics.addView(holder.getItemRootView());
     }
 
     /**

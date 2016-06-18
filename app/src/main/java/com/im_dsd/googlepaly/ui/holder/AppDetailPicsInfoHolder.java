@@ -1,5 +1,6 @@
 package com.im_dsd.googlepaly.ui.holder;
 
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -20,7 +21,8 @@ import static com.im_dsd.googlepaly.R.drawable.subject_default;
 
 public class AppDetailPicsInfoHolder extends BaseHolder<AppDetailBean> {
 
-    private ImageView[] ivList= new ImageView[4];
+    public static final String TAG = "AppDetailPicsInfoHolder";
+    private ImageView[] ivList;
     private BitmapUtils mBitmapUtils;
 
     @Override
@@ -30,11 +32,12 @@ public class AppDetailPicsInfoHolder extends BaseHolder<AppDetailBean> {
         mBitmapUtils = BitmapHelper.getInstance();
         mBitmapUtils.configDefaultLoadingImage(subject_default);
 
-        ivList[5] = (ImageView) view.findViewById(R.id.iv_pic5);
-        ivList[4] = (ImageView) view.findViewById(R.id.iv_pic4);
-        ivList[3] = (ImageView) view.findViewById(R.id.iv_pic3);
-        ivList[2] = (ImageView) view.findViewById(R.id.iv_pic2);
-        ivList[1] = (ImageView) view.findViewById(R.id.iv_pic1);
+        ivList= new ImageView[5];
+        ivList[4] = (ImageView) view.findViewById(R.id.iv_pic5);
+        ivList[3] = (ImageView) view.findViewById(R.id.iv_pic4);
+        ivList[2] = (ImageView) view.findViewById(R.id.iv_pic3);
+        ivList[1] = (ImageView) view.findViewById(R.id.iv_pic2);
+        ivList[0] = (ImageView) view.findViewById(R.id.iv_pic1);
         return view;
     }
 
@@ -45,13 +48,15 @@ public class AppDetailPicsInfoHolder extends BaseHolder<AppDetailBean> {
             List<String> screen = data.getScreen();
             if (screen != null)
             {
-                for (int i = 0; i < 4; i ++)
+                for (int i = 0; i < 5; i ++)
                 {
                     if (i < screen.size())
                     {
-                        ivList[i].setVisibility(View.INVISIBLE);
-                        mBitmapUtils.display(ivList[i], HttpHelper.URL
-                                + "image?name=" + screen.get(i));
+                        ivList[i].setVisibility(View.VISIBLE);
+                        String url = HttpHelper.URL + "image?name=" + screen.get(i);
+
+                        Log.i(TAG, "refreshView: url = " + url);
+                        mBitmapUtils.display(ivList[i],url);
                     }
                     else
                     {
@@ -61,6 +66,7 @@ public class AppDetailPicsInfoHolder extends BaseHolder<AppDetailBean> {
             }
             else
             {
+                Log.i(TAG, "data.getScreen() = null" );
                 //noinspection ThrowableInstanceNeverThrown
                 new Exception("AppDetailPicsInfoHolder ->> data.getScreen() = null");
             }
