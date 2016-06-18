@@ -8,11 +8,18 @@ import android.widget.TextView;
 
 import com.im_dsd.googlepaly.R;
 import com.im_dsd.googlepaly.domain.AppDetailBean;
+import com.im_dsd.googlepaly.http.HttpHelper;
+import com.im_dsd.googlepaly.utils.BitmapHelper;
 import com.im_dsd.googlepaly.utils.UIUtils;
+import com.lidroid.xutils.BitmapUtils;
+
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+
+import static com.im_dsd.googlepaly.R.drawable.subject_default;
 
 /**
  * Created by im_dsd on 16-6-18.
@@ -31,10 +38,14 @@ public class AppDetailSafeInfoHolder extends BaseHolder<AppDetailBean> {
     RelativeLayout rlDesRoot;
     @Bind(R.id.ll_des_root)
     LinearLayout llDesRoot;
+    private BitmapUtils mBitmapUtils;
 
     @Override
     public View setItemView() {
         View view = UIUtils.inflate(R.layout.layout_detail_safeinfo);
+
+        mBitmapUtils = BitmapHelper.getInstance();
+        mBitmapUtils.configDefaultLoadingImage(subject_default);
 
         ButterKnife.bind(this, view);
         ivSafes = new ImageView[4];
@@ -67,7 +78,33 @@ public class AppDetailSafeInfoHolder extends BaseHolder<AppDetailBean> {
     @Override
     public void refreshView(AppDetailBean data) {
 
+          if (data != null)
+          {
+              List<AppDetailBean.SafeInfo> safeInfoList = data.getSafe();
+              if (safeInfoList != null)
+              {
+                  for(int i = 0; i <4; i ++)
+                  {
+                      if (i < safeInfoList.size())
+                      {
+                          AppDetailBean.SafeInfo safeInfo = safeInfoList.get(i);
+                          ivSafes[i].setVisibility(View.VISIBLE);
+                          llDes[i].setVisibility(View.VISIBLE);
 
+                          tvDes[i].setText(safeInfo.getSafeDes());
+                          mBitmapUtils.display(ivSafes[i], HttpHelper.URL
+                                  + "image?name=" + safeInfo.getSafeUrl());
+                          mBitmapUtils.display(ivDes[i], HttpHelper.URL
+                                  + "image?name=" + safeInfo.getSafeDesUrl());
+                      }
+                      else
+                      {
+                          ivSafes[i].setVisibility(View.GONE);
+                          llDes[i].setVisibility(View.GONE);
+                      }
+                  }
+              }
+          }
     }
 
     @OnClick(R.id.iv_arrow)
