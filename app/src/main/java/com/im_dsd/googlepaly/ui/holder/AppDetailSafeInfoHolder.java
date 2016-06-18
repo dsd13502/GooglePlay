@@ -1,6 +1,10 @@
 package com.im_dsd.googlepaly.ui.holder;
 
+import android.animation.Animator;
+import android.animation.ValueAnimator;
+import android.util.Log;
 import android.view.View;
+import android.view.ViewGroup.LayoutParams;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -27,10 +31,14 @@ import static com.im_dsd.googlepaly.R.drawable.subject_default;
 
 public class AppDetailSafeInfoHolder extends BaseHolder<AppDetailBean> {
 
+    public static final String TAG = "AppDetailSafeInfoHolder";
     private ImageView[] ivSafes;// 安全标识的控件数组
     private LinearLayout[] llDes;// 安全描述控件数组
     private ImageView[] ivDes;// 安全描述图片控件数组
     private TextView[] tvDes;// 安全描述文字控件数组
+
+    private LayoutParams mParams;// 安全描述整体控件布局参数
+    private boolean isExpanded = false;
 
     @Bind(R.id.iv_arrow)
     ImageView ivArrow;
@@ -39,15 +47,22 @@ public class AppDetailSafeInfoHolder extends BaseHolder<AppDetailBean> {
     @Bind(R.id.ll_des_root)
     LinearLayout llDesRoot;
     private BitmapUtils mBitmapUtils;
+    private int llDesRootMeasuredHeight;
 
     @Override
     public View setItemView() {
         View view = UIUtils.inflate(R.layout.layout_detail_safeinfo);
+        ButterKnife.bind(this, view);
 
         mBitmapUtils = BitmapHelper.getInstance();
         mBitmapUtils.configDefaultLoadingImage(subject_default);
 
-        ButterKnife.bind(this, view);
+        mParams = llDesRoot.getLayoutParams();
+        mParams.height = 0;
+        //设置高度为0，将布局隐藏起来
+        llDesRoot.setLayoutParams(mParams);
+
+
         ivSafes = new ImageView[4];
         ivSafes[0] = (ImageView) view.findViewById(R.id.iv_safe1);
         ivSafes[1] = (ImageView) view.findViewById(R.id.iv_safe2);
@@ -103,11 +118,83 @@ public class AppDetailSafeInfoHolder extends BaseHolder<AppDetailBean> {
                           llDes[i].setVisibility(View.GONE);
                       }
                   }
+
+                  llDesRoot.measure(0,0);
+                  //获取实际高度
+                  llDesRootMeasuredHeight = llDesRoot.getMeasuredHeight();
+                  Log.i(TAG, "refreshView: llDesRootMeasuredHeight = " + llDesRootMeasuredHeight) ;
               }
           }
     }
 
-    @OnClick(R.id.iv_arrow)
+    @OnClick({R.id.iv_arrow,R.id.rl_des_root})
     public void onClick() {
+
+        toggle();
+        Log.i(TAG, "onClick: toogle");
+    }
+
+    //开关
+    private void toggle() {
+
+        ValueAnimator valueAnimator = null;
+
+        if (isExpanded) {
+            // 收起描述信息
+            isExpanded = false;
+
+            // 初始化按指定值变化的动画器, 布局高度从mDesRootHeight变化到0,此方法调用,并开启动画之后,
+            // 会将最新的高度值不断回调在onAnimationUpdate方法中,在onAnimationUpdate中更新布局高度
+            valueAnimator = ValueAnimator.ofInt(llDesRootMeasuredHeight, 0);
+        } else {
+            // 展开描述信息
+            isExpanded = true;
+//            Log.i(TAG, "toggle:   isExpanded = true");
+            // 初始化按指定值变化的动画器, 布局高度从0变化到mDesRootHeight
+            valueAnimator = ValueAnimator.ofInt(0, llDesRootMeasuredHeight);
+        }
+
+        valueAnimator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+
+                Integer animatedValue = (Integer) animation.getAnimatedValue();
+                Log.i(TAG, "onAnimationUpdate: animatedValue = " + animatedValue);
+                mParams.height = animatedValue;
+                llDesRoot.setLayoutParams(mParams);
+            }
+        });
+
+        valueAnimator.addListener(new Animator.AnimatorListener() {
+            @Override
+            public void onAnimationStart(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationEnd(Animator animation) {
+                if (isExpanded)
+                {
+                    ivArrow.setBackgroundResource(R.drawable.arrow_up);
+                }
+                else
+                {
+                    ivArrow.setBackgroundResource(R.drawable.arrow_down);
+                }
+            }
+
+            @Override
+            public void onAnimationCancel(Animator animation) {
+
+            }
+
+            @Override
+            public void onAnimationRepeat(Animator animation) {
+
+            }
+        });
+
+        valueAnimator.setDuration(200);
+        valueAnimator.start();
     }
 }

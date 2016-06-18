@@ -43,7 +43,7 @@
             android:layout_alignParentRight="true"
             android:layout_centerVertical="true"
             android:layout_margin="5dp"
-            android:src="@drawable/arrow_down" />
+            android:background="@drawable/arrow_down" />
     </RelativeLayout>
 
     <LinearLayout
