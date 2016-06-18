@@ -127,7 +127,7 @@ public class AppDetailSafeInfoHolder extends BaseHolder<AppDetailBean> {
           }
     }
 
-    @OnClick({R.id.iv_arrow,R.id.rl_des_root})
+    @OnClick({R.id.iv_arrow,R.id.rl_des_root,R.id.ll_des_root})
     public void onClick() {
 
         toggle();
@@ -159,7 +159,7 @@ public class AppDetailSafeInfoHolder extends BaseHolder<AppDetailBean> {
             public void onAnimationUpdate(ValueAnimator animation) {
 
                 Integer animatedValue = (Integer) animation.getAnimatedValue();
-                Log.i(TAG, "onAnimationUpdate: animatedValue = " + animatedValue);
+                //Log.i(TAG, "onAnimationUpdate: animatedValue = " + animatedValue);
                 mParams.height = animatedValue;
                 llDesRoot.setLayoutParams(mParams);
             }
