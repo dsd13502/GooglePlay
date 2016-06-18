@@ -1,45 +1,59 @@
 <?xml version="1.0" encoding="utf-8"?>
-<ScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/activity_app_detail"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:orientation="vertical"
     tools:context="com.im_dsd.googlepaly.ui.activity.AppDetailActivity">
 
-    <LinearLayout
-        android:id="@+id/ll_app_detail_root_view"
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:orientation="vertical">
+        android:layout_height="0dp"
+        android:layout_weight="1">
 
-        <FrameLayout
-            android:id="@+id/fll_detail_app_info"
+        <LinearLayout
+            android:id="@+id/ll_app_detail_root_view"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/list_item_bg_selector" >
-        </FrameLayout>
+            android:layout_height="match_parent"
+            android:orientation="vertical">
 
-        <FrameLayout
-            android:id="@+id/fl_detail_safe_info"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/list_item_bg_selector" >
-        </FrameLayout>
+            <FrameLayout
+                android:id="@+id/fll_detail_app_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/list_item_bg_selector">
+            </FrameLayout>
 
-        <HorizontalScrollView
-            android:id="@+id/hsv_app_detail_pics"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="#9e9e9e" >
-        </HorizontalScrollView>
+            <FrameLayout
+                android:id="@+id/fl_detail_safe_info"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/list_item_bg_selector">
+            </FrameLayout>
 
-        <FrameLayout
-            android:id="@+id/fl_app_detail_des"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@drawable/list_item_bg_selector"
-            android:padding="3dp" >
-        </FrameLayout>
+            <HorizontalScrollView
+                android:id="@+id/hsv_app_detail_pics"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="#9e9e9e">
+            </HorizontalScrollView>
 
-    </LinearLayout>
-</ScrollView>
+            <FrameLayout
+                android:id="@+id/fl_app_detail_des"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:background="@drawable/list_item_bg_selector"
+                android:padding="3dp">
+            </FrameLayout>
+
+        </LinearLayout>
+    </ScrollView>
+
+    <FrameLayout
+        android:id="@+id/fl_detail_download"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/detail_bottom_bg">
+    </FrameLayout>
+</LinearLayout>

@@ -6,41 +6,33 @@ import android.view.View;
 import android.widget.FrameLayout;
 import android.widget.HorizontalScrollView;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 
 import com.im_dsd.googlepaly.R;
 import com.im_dsd.googlepaly.domain.AppDetailBean;
 import com.im_dsd.googlepaly.http.protocol.AppDetailProtocol;
 import com.im_dsd.googlepaly.ui.holder.AppDetailAppDescHolder;
 import com.im_dsd.googlepaly.ui.holder.AppDetailAppInfoHolder;
+import com.im_dsd.googlepaly.ui.holder.AppDetailDownloadHolder;
 import com.im_dsd.googlepaly.ui.holder.AppDetailPicsInfoHolder;
 import com.im_dsd.googlepaly.ui.holder.AppDetailSafeInfoHolder;
 import com.im_dsd.googlepaly.ui.view.LoadingPage;
 import com.im_dsd.googlepaly.utils.ConstantValuesUtils;
 import com.im_dsd.googlepaly.utils.UIUtils;
 
-import butterknife.Bind;
-import butterknife.ButterKnife;
-
 
 public class AppDetailActivity extends BaseActivity {
     public static final String TAG = "AppDetailActivity";
-    @Bind(R.id.fll_detail_app_info)
-    FrameLayout flAppDetailAppInfo;
-    @Bind(R.id.fl_detail_safe_info)
-    FrameLayout flAppDetailSafeInfo;
-    @Bind(R.id.hsv_app_detail_pics)
-    HorizontalScrollView hsvAppDetailPics;
-    @Bind(R.id.fl_app_detail_des)
-    FrameLayout flAppDetailDes;
-    @Bind(R.id.ll_app_detail_root_view)
-    LinearLayout llAppDetailRootView;
-    @Bind(R.id.activity_app_detail)
-    ScrollView activityAppDetail;
+
     private LoadingPage mLoadingPage;
     private String mPackageName;
     private AppDetailBean mData;
-
+    private FrameLayout flAppDetailAppInfo;
+    private FrameLayout flAppDetailSafeInfo;
+    private HorizontalScrollView hsvAppDetailPics;
+    private FrameLayout flAppDetailDes;
+    private LinearLayout llappdetailrootview;
+    private FrameLayout flDetailDownload;
+    private LinearLayout activityappdetail;
 
 
     @Override
@@ -85,8 +77,15 @@ public class AppDetailActivity extends BaseActivity {
 
     private View OnCreateSuccessView() {
         View rootView = UIUtils.inflate(R.layout.activity_app_detail);
+        this.activityappdetail = (LinearLayout) rootView.findViewById(R.id.activity_app_detail);
+        this.flDetailDownload = (FrameLayout) rootView.findViewById(R.id.fl_detail_download);
+        this.llappdetailrootview = (LinearLayout) rootView.findViewById(R.id.ll_app_detail_root_view);
+        this.flAppDetailDes = (FrameLayout) rootView.findViewById(R.id.fl_app_detail_des);
+        this.hsvAppDetailPics = (HorizontalScrollView) rootView.findViewById(R.id.hsv_app_detail_pics);
+        this.flAppDetailSafeInfo = (FrameLayout) rootView.findViewById(R.id.fl_detail_safe_info);
+        this.flAppDetailAppInfo = (FrameLayout) rootView.findViewById(R.id.fll_detail_app_info);
 
-        ButterKnife.bind(this, rootView);
+
 
         // 初始化应用详情信息
         initAppInfo();
@@ -103,10 +102,12 @@ public class AppDetailActivity extends BaseActivity {
     }
 
     /**
-     *初始化下载布局
+     * 初始化下载布局
      */
     private void initDownload() {
-
+        AppDetailDownloadHolder holder = new AppDetailDownloadHolder();
+        holder.setData(mData);
+        flDetailDownload.addView(holder.getItemRootView());
     }
 
     /**
@@ -120,7 +121,7 @@ public class AppDetailActivity extends BaseActivity {
     }
 
     /**
-     *  初始化图片信息
+     * 初始化图片信息
      */
     private void initPics() {
         AppDetailPicsInfoHolder holder = new AppDetailPicsInfoHolder();
