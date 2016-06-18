@@ -12,6 +12,7 @@ import com.im_dsd.googlepaly.R;
 import com.im_dsd.googlepaly.domain.AppDetailBean;
 import com.im_dsd.googlepaly.http.protocol.AppDetailProtocol;
 import com.im_dsd.googlepaly.ui.holder.AppDetailAppInfoHolder;
+import com.im_dsd.googlepaly.ui.holder.AppDetailSafeInfoHolder;
 import com.im_dsd.googlepaly.ui.view.LoadingPage;
 import com.im_dsd.googlepaly.utils.ConstantValuesUtils;
 import com.im_dsd.googlepaly.utils.UIUtils;
@@ -110,6 +111,7 @@ public class AppDetailActivity extends BaseActivity {
      * 初始化描述信息
      */
     private void initDesc() {
+
     }
 
     /**
@@ -122,6 +124,9 @@ public class AppDetailActivity extends BaseActivity {
      * 初始化安全相关信息
      */
     private void initSafe() {
+        AppDetailSafeInfoHolder holder = new AppDetailSafeInfoHolder();
+        holder.setData(mData);
+        flAppDetailSafeInfo.addView(holder.getItemRootView());
     }
 
     /**
