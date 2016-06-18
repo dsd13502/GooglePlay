@@ -11,6 +11,7 @@ import android.widget.ScrollView;
 import com.im_dsd.googlepaly.R;
 import com.im_dsd.googlepaly.domain.AppDetailBean;
 import com.im_dsd.googlepaly.http.protocol.AppDetailProtocol;
+import com.im_dsd.googlepaly.ui.holder.AppDetailAppDescHolder;
 import com.im_dsd.googlepaly.ui.holder.AppDetailAppInfoHolder;
 import com.im_dsd.googlepaly.ui.holder.AppDetailPicsInfoHolder;
 import com.im_dsd.googlepaly.ui.holder.AppDetailSafeInfoHolder;
@@ -113,6 +114,9 @@ public class AppDetailActivity extends BaseActivity {
      */
     private void initDesc() {
 
+        AppDetailAppDescHolder holder = new AppDetailAppDescHolder();
+        holder.setData(mData);
+        flAppDetailDes.addView(holder.getItemRootView());
     }
 
     /**

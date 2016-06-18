@@ -36,6 +36,12 @@ public class AppDetailAppDescHolder extends BaseHolder<AppDetailBean> {
 
     @Override
     public void refreshView(AppDetailBean data) {
+        if (data != null)
+        {
+            tvDetailAuthor.setText(data.getAuthor());
+            tvDetailDes.setText(data.getDes());
+
+        }
 
     }
 
