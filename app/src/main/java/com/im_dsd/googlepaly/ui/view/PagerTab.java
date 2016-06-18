@@ -1,9 +1,11 @@
 package com.im_dsd.googlepaly.ui.view;
 
+import android.annotation.TargetApi;
 import android.content.Context;
 import android.graphics.Canvas;
 import android.graphics.Paint;
 import android.graphics.Typeface;
+import android.os.Build;
 import android.support.v4.view.ViewCompat;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
@@ -28,6 +30,8 @@ import com.im_dsd.googlepaly.utils.UIUtils;
 
 
 public class PagerTab extends ViewGroup {
+
+
 
     private ViewPager mViewPager;
     private PageListener mPageListener = new PageListener();// 用于注册给ViewPager监听状态和滚动
@@ -94,6 +98,10 @@ public class PagerTab extends ViewGroup {
 
         init();
         initPaint();
+    }
+    @TargetApi(Build.VERSION_CODES.LOLLIPOP)
+    public PagerTab(Context context, AttributeSet attrs, int defStyleAttr, int defStyleRes) {
+        super(context, attrs, defStyleAttr, defStyleRes);
     }
 
     /**
