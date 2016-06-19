@@ -8,6 +8,7 @@ import android.widget.Button;
 import android.widget.FrameLayout;
 
 import com.im_dsd.googlepaly.R;
+import com.im_dsd.googlepaly.manager.ThreadManager;
 import com.im_dsd.googlepaly.utils.UIUtils;
 
 /**
@@ -124,19 +125,21 @@ public abstract class LoadingPage extends FrameLayout{
         if (mCurrentState == STATE_UNLOAD)
         {
 
-            //开启线程加载数据
-             new Thread()
-            {
+            //使用线程池，开启线程加载数据
+            ThreadManager.ThreadPool threadPool = ThreadManager.getThreadPool();
+            threadPool.executor(new Runnable() {
                 @Override
-                public void run() {
-                    super.run();
+                public void run()
+                {
                     final ResultState state = OnLoadDate();
                     // 必须在主线程更新界面
-                    UIUtils.runOnUiThread(new Runnable() {
-
+                    UIUtils.runOnUiThread(new Runnable()
+                    {
                         @Override
-                        public void run() {
-                            if (state != null) {
+                        public void run()
+                        {
+                            if (state != null)
+                            {
                                 // 更新当前状态
                                 mCurrentState = state.getState();
                                 // 更新当前页面
@@ -145,8 +148,7 @@ public abstract class LoadingPage extends FrameLayout{
                         }
                     });
                 }
-            }.start();
-
+            });
         }
 
     }
